@@ -16,9 +16,11 @@ public class Combinaison {
 
 	public Combinaison (){
 		pion1=new Pion(ROUGE);
-		pion2=p2;
-		pion3=p3;
-		pion4=p4;
+		pion2=new Pion(VERT);
+		pion3=new Pion(JAUNE);
+		pion4=new Pion(BLEU);
 	 }
-
+	
+	
+	
 }
