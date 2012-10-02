@@ -1,7 +1,7 @@
 package fr.iutvalence.java.projets.mastermind;
 
+// FIXME écrire un commentaire correct
 public class Combinaison {
-	
 	private Pion pion1;
 	private Pion pion2;
 	private Pion pion3;
@@ -20,7 +20,4 @@ public class Combinaison {
 		pion3=new Pion(JAUNE);
 		pion4=new Pion(BLEU);
 	 }
-	
-	
-	
 }
