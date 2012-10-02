@@ -1,26 +1,28 @@
 package fr.iutvalence.java.projets.mastermind;
 
 
-// FIXME 残rire un commentaire correct
+// FIXME dﾃｩfinition d'une partie
 public class Partie {
 
-	// FIXME 残rire un commentaire correct
+	// FIXME dﾃｩfinition de la combinaison ﾃ deviner
 	private Combinaison aTrouver;
 	
-	// FIXME 残rire un commentaire correct
+	// FIXME dﾃｩfinition de la variable joueur
 	private Joueur joueur;
 	
-	// FIXME 残rire un commentaire correct
+	// FIXME dﾃｩfinition de la combinaison de l'utilisateur
     private Combinaison essai;
     
+    
+ // FIXME constructeurs
     public Partie (Joueur player){
     	
     	joueur=player;
     	aTrouver= new Combinaison();
     	
     }
-	
+
     
-    // FIXME constructeurs, m師hodes ?
+    // FIXME mﾃｩthodes 
 	
 }

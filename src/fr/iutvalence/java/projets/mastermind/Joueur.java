@@ -1,12 +1,11 @@
 package fr.iutvalence.java.projets.mastermind;
 
-//FIXME écrire un commentaire correct
+//FIXME definition du joueur
 public class Joueur {
 
-	// FIXME écrire un commentaire correct
-	// FIXME marquer la visibilité des attributs (public/private)
-	String pseudo;
-	int score;
+	// FIXME definition pseudo et score du joueur
+	public String pseudo;
+	public int score;
 	
 	public Joueur(String jNom){
 		pseudo=jNom;
