@@ -1,29 +1,32 @@
 package fr.iutvalence.java.projets.mastermind;
-//FIXME écrire un commentaire correct
+// FIXME réfléchir à l'utilité de cette classe
+
+
+//FIXME écrire un commentaire
 public class Pion {
 	
-	// FIXME definition d'une constante couleur
+	// FIXME écrire le commentaire
 	public final static int ROUGE = 0;
 	
-	// FIXME definition d'une constante couleur
+	// FIXME écrire le commentaire
 	public final static int VERT = 1;
 	
-	// FIXME definition d'une constante couleur
+	// FIXME écrire le commentaire
 	public final static int JAUNE = 2;
 	
-	// FIXME definition d'une constante couleur
+	// FIXME écrire le commentaire
 	public final static int BLEU = 3;
 	
-	// FIXME definition d'une constante couleur
+	// FIXME écrire le commentaire
 	public final static int BLANC = 4;
 		
-	// FIXME definition d'une constante couleur
+	// FIXME écrire le commentaire
 	public final static int NOIR = 5;
 	
-	// FIXME definition d'une variable couleur
+	// FIXME écrire le commentaire
 	private int couleur;
 	 
-	// FIXME création d'un pion avec parametre
+	// FIXME écrire le commentaire
 	 public Pion(int color){
 		 couleur=color;		 
 	 }
@@ -31,7 +34,7 @@ public class Pion {
 	 
 	//FIXME méthodes ?
 	 
-	//FIXME modification de couleur d'un pion
+	// FIXME écrire le commentaire
 	 public void setColor(int nouvColor)
 	 {
 	          couleur = nouvColor;

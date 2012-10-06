@@ -1,20 +1,20 @@
 package fr.iutvalence.java.projets.mastermind;
 
 
-// FIXME définition d'une partie
+// FIXME écrire le commentaire
 public class Partie {
 
-	// FIXME définition de la combinaison à deviner
+	// FIXME écrire le commentaire
 	private Combinaison aTrouver;
 	
-	// FIXME définition de la variable joueur
+	// FIXME écrire le commentaire
 	private Joueur joueur;
 	
-	// FIXME définition de la combinaison de l'utilisateur
+	// FIXME écrire le commentaire
     private Combinaison essai;
     
     
- // FIXME constructeurs
+	// FIXME écrire le commentaire
     public Partie (Joueur player){
     	
     	joueur=player;
@@ -23,6 +23,6 @@ public class Partie {
     }
 
     
-    // FIXME méthodes 
+    // FIXME méthodes  ?
 	
 }
