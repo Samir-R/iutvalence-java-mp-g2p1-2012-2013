@@ -5,28 +5,22 @@ package fr.iutvalence.java.projets.mastermind;
 //FIXME écrire un commentaire
 public class Pion {
 	
-	// FIXME écrire le commentaire
+/**	// FIXME definition de la constante couleur ROUGE **/
 	public final static int ROUGE = 0;
 	
-	// FIXME écrire le commentaire
+/**	// FIXME definition de la constante couleur VERT **/
 	public final static int VERT = 1;
 	
-	// FIXME écrire le commentaire
+/**	// FIXME definition de la constante couleur JAUNE **/
 	public final static int JAUNE = 2;
-	
-	// FIXME écrire le commentaire
+
+/**	// FIXME definition de la constante couleur BLEU **/
 	public final static int BLEU = 3;
 	
-	// FIXME écrire le commentaire
-	public final static int BLANC = 4;
-		
-	// FIXME écrire le commentaire
-	public final static int NOIR = 5;
-	
-	// FIXME écrire le commentaire
+/**	// FIXME definition de la variable couleur **/
 	private int couleur;
 	 
-	// FIXME écrire le commentaire
+/**	// FIXME Constructeur de pion à partir d'un entier representant sa couleur**/
 	 public Pion(int color){
 		 couleur=color;		 
 	 }
@@ -34,11 +28,7 @@ public class Pion {
 	 
 	//FIXME méthodes ?
 	 
-	// FIXME écrire le commentaire
-	 public void setColor(int nouvColor)
-	 {
-	          couleur = nouvColor;
-	 }
+	
 	
 	
 }
