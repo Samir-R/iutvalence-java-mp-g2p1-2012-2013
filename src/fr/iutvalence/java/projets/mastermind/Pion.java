@@ -39,6 +39,8 @@ public class Pion {
 		 couleur=color;		 
 	 }
 	 
+	
+
 	 
 	//FIXME méthodes ?
 	 

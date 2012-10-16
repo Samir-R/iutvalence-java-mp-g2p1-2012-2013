@@ -1,10 +1,11 @@
 package fr.iutvalence.java.projets.mastermind;
 
-// FIXME corriger le commentaire (ici vous parlez d'implementation, on veut juste savoir à quoi sert un joueur)
 
 /**
- * Un joueur est crée lors de sa premiere partie, il est ensuite chargé pour dans la base
- * pour reutiliser pour une autre partie.
+ * Un Joueur est composé d'un pseudonyme le definisant, un score pour une partie
+ * courante et maxScore representant le meilleur score réalisé par le joueur pour 
+ * une partie 
+ * 
  
  * 
  * @author merahme
@@ -12,30 +13,31 @@ package fr.iutvalence.java.projets.mastermind;
  */
 public class Joueur {
 
-// FIXME passer l'attribut en private	
+
 /**
 *	pseudo du joueur
 */	
-	public String pseudo;
+	private String pseudo;
 
-	// FIXME passer l'attribut en private
+	
 /**
 * 	score du joueur pour une partie
-*/	public int score;
+*/	private int score;
 
 
-//FIXME passer l'attribut en private
+
 /**
 *	meilleur score du joueur pour une partie
 */	
-public int maxScore;
+	private int maxScore;
 
 
 // FIXME détailler le commentaire
 /**	
- * création d'un joueur 
+ * création d'un joueur à partir d'un pseudo saisie préalablement, le score et le maxScore
+ * sont tout deux initialisés à 0(en effet le joueur n'a effectuer aucune partie)
 */	
-public Joueur(String jNom){
+	public Joueur(String jNom){
 		pseudo=jNom;
 		score=0;
 		maxScore=0;

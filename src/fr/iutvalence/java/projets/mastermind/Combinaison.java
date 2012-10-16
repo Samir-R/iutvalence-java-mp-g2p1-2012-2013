@@ -1,26 +1,40 @@
 package fr.iutvalence.java.projets.mastermind;
 
-// FIXME écrire un commentaire 
+/** Une combinaison est definit par une liste de quatre pion
+ *  
+ * @author merahme
+ *
+ */
 public class Combinaison {
-	// FIXME respecter la syntyaxe JavaDoc 
-	// definition du premier pion de la combinaison
+	
+	
+/**	 
+ * definition du premier pion de la combinaison
+*/	
 	private Pion pion1;
 
-	// FIXME respecter la syntyaxe JavaDoc
-	// definition du deuxieme pion de la combinaison
+	
+/**	 
+ * definition du deuxieme pion de la combinaison
+*/
 	private Pion pion2;
 	
-	// FIXME respecter la syntyaxe JavaDoc
-	// definition du troisieme pion de la combinaison
+	
+/**	 
+ * definition du troisieme pion de la combinaison
+*/	
 	private Pion pion3;
 	
-	// FIXME respecter la syntyaxe JavaDoc
-	// definition du dernier pion de la combinaison
+	
+/** 
+ * definition du dernier pion de la combinaison
+*/
 	private Pion pion4;
 	
-	// FIXME respecter la syntyaxe JavaDoc
-	// FIXME compléter le commentaire
-	// Constructeur de combinanison avec parametre
+	
+	/** 
+	 * Constructeur de combinanison avec ses 4 pions pris en parametres
+	*/
 	public Combinaison (Pion p1, Pion p2, Pion p3, Pion p4){
 		pion1=p1;
 		pion2=p2;
@@ -28,9 +42,33 @@ public class Combinaison {
 		pion4=p4;
 	 }
 	
-	// FIXME il serait bien de disposer en plus d'une méthode qui renvoie un résultat exploitable (nombres de pions bons et/ou bien placés) sous la forme d'un objet
 	
-	// FIXME l'équivalence proposée ici repose sur l'équivalence de pions. Il faudrait redéfinir equals correctement dans la classe pion 
+	//Retourne la valeur du pion1
+	  public Pion getPion1()
+	  {
+	    return pion1;
+	  }
+
+	//Retourne la valeur du pion2
+	  public Pion getPion2()
+	  {
+	    return pion2;
+	  }
+	  
+	//Retourne la valeur du pion3
+	  public Pion getPion3()
+	  {
+	    return pion3;
+	  }
+	  
+	//Retourne la valeur du pion4
+	  public Pion getPion4()
+	  {
+	    return pion4;
+	  }
+	
+	
+		// redéfinition de la methode equals
 	public boolean equals(Object obj) {
 		  //On vérifie si les références d'objets sont identiques
 		  if (this == obj)
@@ -59,5 +97,7 @@ public class Combinaison {
 				
 		}	
 
+	
+	
 	// FIXME redéfinir la méthode toString pour avoir une version affichable de la combinaison
 }
