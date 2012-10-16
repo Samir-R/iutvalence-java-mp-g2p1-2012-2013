@@ -1,8 +1,8 @@
 package fr.iutvalence.java.projets.mastermind;
 
-// FIXME -> écrire le commentaire A LA SYNTAXE JAVADOC
+// FIXME corriger le commentaire (ici vous parlez d'implementation, on veut juste savoir à quoi sert un joueur)
+
 /**
-//FIXME definition du joueur:
  * Un joueur est crée lors de sa premiere partie, il est ensuite chargé pour dans la base
  * pour reutiliser pour une autre partie.
  
@@ -11,20 +11,31 @@ package fr.iutvalence.java.projets.mastermind;
  *
  */
 public class Joueur {
-/**
-	// FIXME pseudo du joueur
-**/	public String pseudo;
 
+// FIXME passer l'attribut en private	
 /**
-	// FIXME score du joueur pour une partie
-**/	public int score;
+*	pseudo du joueur
+*/	
+	public String pseudo;
 
+	// FIXME passer l'attribut en private
 /**
-	// FIXME meileur score du joueur pour une partie
-**/	public int maxScore;
-		
-/**	// FIXME création d'un joueur 
-**/	public Joueur(String jNom){
+* 	score du joueur pour une partie
+*/	public int score;
+
+
+//FIXME passer l'attribut en private
+/**
+*	meilleur score du joueur pour une partie
+*/	
+public int maxScore;
+
+
+// FIXME détailler le commentaire
+/**	
+ * création d'un joueur 
+*/	
+public Joueur(String jNom){
 		pseudo=jNom;
 		score=0;
 		maxScore=0;
