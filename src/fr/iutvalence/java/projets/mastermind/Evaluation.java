@@ -1,11 +1,12 @@
 package fr.iutvalence.java.projets.mastermind;
 
-// FIXME remarque : l'évaluation e peut pas être qu'une valeur. Elle représente le nombre de pions présents ou présents et bien placés.
+// FIXME remarque : l'évaluation ne peut pas être qu'une valeur. Elle représente le nombre de pions présents ou présents et bien placés.
 
 //FIXME Respecter la syntaxe JavaDoc
 
 
 
+// FIXME réécrire le commentaire (à discuter)
 /**
  * classe qui rend un objet vérifiant les règles du mastermind ! 		
  * 			 noir = dans la combinaison mais pas au bon endroit
@@ -30,6 +31,7 @@ public class Evaluation {
 	public final static int BLANC = 2;
 	
 	
+	// FIXME remplacer les 4 attributs par un seul (tableau)
 /**
  * definition de la valeur d'evaluation du pion 1
 */
@@ -70,6 +72,7 @@ public class Evaluation {
 			valeur3=BLANC;
 			valeur4=BLANC;
 		
+			// FIXME sortir du constructeur 
 		}
 		
 		if (essai.getPion1()==solut.getPion1())
@@ -135,6 +138,7 @@ public class Evaluation {
 
 	
 	
+	// FIXME écrire une application qui teste le constructeur dans des cas bien choisis
 	
 	
 	

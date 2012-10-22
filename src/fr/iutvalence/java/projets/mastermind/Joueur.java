@@ -17,6 +17,7 @@ public class Joueur {
 /**
 *	pseudo du joueur
 */	
+	// FIXME le pseudo change t'il en cours de partie ?
 	private String pseudo;
 
 	

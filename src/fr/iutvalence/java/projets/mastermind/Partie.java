@@ -18,7 +18,11 @@ public class Partie {
 	
 /**	
  * la combinaison proposée par le joueur durant une partie
-*/    private Combinaison essai;
+ * 
+*/
+// FIXME attribut ou variable locale à une méthode ?
+private Combinaison essai;
+
     
 	
     

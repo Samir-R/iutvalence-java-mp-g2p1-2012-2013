@@ -5,6 +5,8 @@ package fr.iutvalence.java.projets.mastermind;
 //FIXME écrire un commentaire
 public class Pion {
 	
+	
+// FIXME redéfinir couleur sous la forme d'une énumération
 /**
  *  definition de la constante couleur ROUGE 
  */
@@ -42,7 +44,11 @@ public class Pion {
 	
 
 	 
-	//FIXME méthodes ?
+	//FIXME obtenir la couleur ?
+	 
+	 // FIXME redéfinir equals et hashCode
+	 
+	 // FIXME redéfinir toString (et tester)
 	 
 	
 	

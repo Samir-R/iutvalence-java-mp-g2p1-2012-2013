@@ -1,6 +1,6 @@
 package fr.iutvalence.java.projets.mastermind;
 
-/** Une combinaison est definit par une liste de quatre pion
+/** Une combinaison est definie par quatre pions
  *  
  * @author merahme
  *
@@ -8,6 +8,7 @@ package fr.iutvalence.java.projets.mastermind;
 public class Combinaison {
 	
 	
+	// FIXME remplacer les 4 attributs par un seul attribut (tableau)
 /**	 
  * definition du premier pion de la combinaison
 */	
@@ -35,6 +36,7 @@ public class Combinaison {
 	/** 
 	 * Constructeur de combinanison avec ses 4 pions pris en parametres
 	*/
+	// FIXME remplacer les 4 paramètres par un seul tableau et soulever une exception si il n'y a pas exactement 4 pions dans le tableau
 	public Combinaison (Pion p1, Pion p2, Pion p3, Pion p4){
 		pion1=p1;
 		pion2=p2;
@@ -43,6 +45,7 @@ public class Combinaison {
 	 }
 	
 	
+	// FIXME remplacer par une seule méthode getPion(int), soulevant une exception si le numéro est invalide
 	//Retourne la valeur du pion1
 	  public Pion getPion1()
 	  {
@@ -68,7 +71,10 @@ public class Combinaison {
 	  }
 	
 	
-		// redéfinition de la methode equals
+	
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	public boolean equals(Object obj) {
 		  //On vérifie si les références d'objets sont identiques
 		  if (this == obj)
@@ -83,6 +89,8 @@ public class Combinaison {
 		    return false;
 
 		  //Maintenant, on compare les attributs de nos objets
+		  
+		  // FIXME cela n'a des sens que si equals est correctement redéfini dans la classe Pion
 		  Combinaison solut = (Combinaison) obj;
 		  if (!pion1.equals(solut.pion1))
 				return false;
