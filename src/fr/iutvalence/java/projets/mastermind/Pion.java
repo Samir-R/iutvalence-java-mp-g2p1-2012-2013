@@ -41,15 +41,52 @@ public class Pion {
 		 couleur=color;		 
 	 }
 	 
-	
+	 //FIXME obtenir la couleur ?
+	 public int getCouleur(){
+		  return this.couleur;
+		  }
 
 	 
-	//FIXME obtenir la couleur ?
+	
 	 
-	 // FIXME redéfinir equals et hashCode
+	 // FIXME redéfinir equals
+	 public boolean equals(Object obj) {
+		  //On vérifie si les références d'objets sont identiques
+		  if (this == obj)
+		    return true;
+
+		  //On vérifie si l'objet passé en paramètre est null
+		  if (obj == null)
+		    return false;
+
+		  //On s'assure que les objets sont du même type
+		  if (getClass() != obj.getClass())
+		    return false;
+
+		  //Maintenant, on compare les attributs de nos objets
+		  
+		  
+		  Pion p = (Pion) obj;
+		  if (this.couleur!=p.couleur)
+				return false;
+		  					
+			return true;
+				
+		}	
+	 
+	 
+	 
+	 // FIXME redéfinir hashCode
+	 
+	 
+	 
+	 
 	 
 	 // FIXME redéfinir toString (et tester)
-	 
+	 public String toString(){
+		  return "\tLa couleur du pion est "+this.couleur;
+		  }
+	
 	
 	
 	

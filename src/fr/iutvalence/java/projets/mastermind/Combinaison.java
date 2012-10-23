@@ -47,28 +47,28 @@ public class Combinaison {
 	
 	// FIXME remplacer par une seule méthode getPion(int), soulevant une exception si le numéro est invalide
 	//Retourne la valeur du pion1
-	  public Pion getPion1()
-	  {
-	    return pion1;
+	
+	
+
+	  public Pion getPion(int p) throws InvalidParametersException {
+	 
+		  if (p==1)
+			return this.pion1;
+		  
+		  if (p==2)
+				return this.pion2;
+		  
+		  if (p==3)
+				return this.pion3;
+		  
+		  if (p==4)
+				return this.pion4;
+		  else 
+			  throw new InvalidParametersException();
+	
+		  
 	  }
 
-	//Retourne la valeur du pion2
-	  public Pion getPion2()
-	  {
-	    return pion2;
-	  }
-	  
-	//Retourne la valeur du pion3
-	  public Pion getPion3()
-	  {
-	    return pion3;
-	  }
-	  
-	//Retourne la valeur du pion4
-	  public Pion getPion4()
-	  {
-	    return pion4;
-	  }
 	
 	
 	
@@ -84,13 +84,13 @@ public class Combinaison {
 		  if (obj == null)
 		    return false;
 
-		  //On s'assure que les objets sont du même type, ici de type Ville
+		  //On s'assure que les objets sont du même type
 		  if (getClass() != obj.getClass())
 		    return false;
 
 		  //Maintenant, on compare les attributs de nos objets
 		  
-		  // FIXME cela n'a des sens que si equals est correctement redéfini dans la classe Pion
+		 
 		  Combinaison solut = (Combinaison) obj;
 		  if (!pion1.equals(solut.pion1))
 				return false;
@@ -108,4 +108,9 @@ public class Combinaison {
 	
 	
 	// FIXME redéfinir la méthode toString pour avoir une version affichable de la combinaison
+	public String toString(){
+		  return "\tPion 1 :"+this.pion1+", Pion 2 :"+this.pion2+", Pion 3 :"+this.pion3+", Pion 4 :"+this.pion4;
+		  }
+	
+	
 }

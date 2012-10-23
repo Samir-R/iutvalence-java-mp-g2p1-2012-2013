@@ -72,68 +72,87 @@ public class Evaluation {
 			valeur3=BLANC;
 			valeur4=BLANC;
 		
-			// FIXME sortir du constructeur 
+			return;
 		}
 		
-		if (essai.getPion1()==solut.getPion1())
-			valeur1=BLANC;
-		else
-		{
-			if ((essai.getPion1()==solut.getPion2()) 
-				|| (essai.getPion1()==solut.getPion3()) 
-				|| (essai.getPion1()==solut.getPion4()))
-				valeur1=NOIR;
+		try {
+			if (essai.getPion(1)==solut.getPion(1))
+				valeur1=BLANC;
 			else
-				valeur1=NUL;
+			{
+				if ((essai.getPion(1)==solut.getPion(2)) 
+					|| (essai.getPion(1)==solut.getPion(3)) 
+					|| (essai.getPion(1)==solut.getPion(4)))
+					valeur1=NOIR;
+				else
+					valeur1=NUL;
+			}
+		} 
+		catch (InvalidParametersException e) 
+		{
+			// on peut ignorer l'exception car un objet Combinaison a exactement 4 pions
 		}		
 		
-		if (essai.getPion2()==solut.getPion2())
-			valeur2=BLANC;
-		else
-		{
-			if ((essai.getPion2()==solut.getPion1()) 
-				|| (essai.getPion2()==solut.getPion3()) 
-				|| (essai.getPion2()==solut.getPion4()))
-				valeur2=NOIR;
+		
+		try {
+			if (essai.getPion(2)==solut.getPion(2))
+				valeur1=BLANC;
 			else
-				valeur2=NUL;
+			{
+				if ((essai.getPion(2)==solut.getPion(1)) 
+					|| (essai.getPion(2)==solut.getPion(3)) 
+					|| (essai.getPion(2)==solut.getPion(4)))
+					valeur1=NOIR;
+				else
+					valeur1=NUL;
+			}
+		} catch (InvalidParametersException e) 
+		{
+			// on peut ignorer l'exception car un objet Combinaison a exactement 4 pions
 		}	
 		
-		
-		
-		if (essai.getPion3()==solut.getPion3())
-			valeur3=BLANC;
-		else
-		{
-			if ((essai.getPion3()==solut.getPion2()) 
-				|| (essai.getPion3()==solut.getPion1()) 
-				|| (essai.getPion3()==solut.getPion4()))
-				valeur3=NOIR;
+		try {
+			if (essai.getPion(3)==solut.getPion(3))
+				valeur1=BLANC;
 			else
-				valeur3=NUL;
+			{
+				if ((essai.getPion(3)==solut.getPion(1)) 
+					|| (essai.getPion(3)==solut.getPion(2)) 
+					|| (essai.getPion(3)==solut.getPion(4)))
+					valeur1=NOIR;
+				else
+					valeur1=NUL;
+			}
+		} catch (InvalidParametersException e) 
+		{
+			// on peut ignorer l'exception car un objet Combinaison a exactement 4 pions
 		}	
 		
-		
-		if (essai.getPion4()==solut.getPion4())
-			valeur4=BLANC;
-		else
-		{
-			if ((essai.getPion4()==solut.getPion2()) 
-				|| (essai.getPion4()==solut.getPion3()) 
-				|| (essai.getPion4()==solut.getPion1()))
-				valeur4=NOIR;
+		try {
+			if (essai.getPion(4)==solut.getPion(4))
+				valeur1=BLANC;
 			else
-				valeur4=NUL;
+			{
+				if ((essai.getPion(4)==solut.getPion(1)) 
+					|| (essai.getPion(4)==solut.getPion(2)) 
+					|| (essai.getPion(4)==solut.getPion(3)))
+					valeur1=NOIR;
+				else
+					valeur1=NUL;
+			}
+		} catch (InvalidParametersException e) 
+		{
+			// on peut ignorer l'exception car un objet Combinaison a exactement 4 pions
 		}	
 		
-		
+			
 	}
 	
 
 	// redéfinition de la methode toString
 	
 	public String toString(){
-		  return "\tPion 1 :"+this.valeur1+", Pion 2 :"+this.valeur2+", Pion 3 :"+this.valeur3+", Pion 4 :"+this.valeur4;
+		  return "\tPion 1 : "+this.valeur1+" , Pion 2 : "+this.valeur2+" , Pion 3 : "+this.valeur3+" , Pion 4 : "+this.valeur4;
 		  }
 
 	
