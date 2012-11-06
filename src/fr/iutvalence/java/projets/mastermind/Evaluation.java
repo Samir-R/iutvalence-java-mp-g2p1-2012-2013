@@ -65,6 +65,8 @@ public class Evaluation {
  */
 	public Evaluation(Combinaison essai,Combinaison solut)
 	{
+		
+		Pion tabPionFaux[] = new Pion[4];
 		if (essai.equals(solut))
 		{	
 			valeur1=BLANC;
@@ -75,77 +77,114 @@ public class Evaluation {
 			return;
 		}
 		
-		try {
-			if (essai.getPion(1)==solut.getPion(1))
-				valeur1=BLANC;
-			else
-			{
-				if ((essai.getPion(1)==solut.getPion(2)) 
-					|| (essai.getPion(1)==solut.getPion(3)) 
-					|| (essai.getPion(1)==solut.getPion(4)))
-					valeur1=NOIR;
-				else
-					valeur1=NUL;
-			}
-		} 
-		catch (InvalidParametersException e) 
+		else 
+			try {	
 		{
-			// on peut ignorer l'exception car un objet Combinaison a exactement 4 pions
-		}		
-		
-		
-		try {
-			if (essai.getPion(2)==solut.getPion(2))
-				valeur1=BLANC;
-			else
-			{
-				if ((essai.getPion(2)==solut.getPion(1)) 
-					|| (essai.getPion(2)==solut.getPion(3)) 
-					|| (essai.getPion(2)==solut.getPion(4)))
-					valeur1=NOIR;
-				else
-					valeur1=NUL;
-			}
-		} catch (InvalidParametersException e) 
-		{
-			// on peut ignorer l'exception car un objet Combinaison a exactement 4 pions
-		}	
-		
-		try {
-			if (essai.getPion(3)==solut.getPion(3))
-				valeur1=BLANC;
-			else
-			{
-				if ((essai.getPion(3)==solut.getPion(1)) 
-					|| (essai.getPion(3)==solut.getPion(2)) 
-					|| (essai.getPion(3)==solut.getPion(4)))
-					valeur1=NOIR;
-				else
-					valeur1=NUL;
-			}
-		} catch (InvalidParametersException e) 
-		{
-			// on peut ignorer l'exception car un objet Combinaison a exactement 4 pions
-		}	
-		
-		try {
-			if (essai.getPion(4)==solut.getPion(4))
-				valeur1=BLANC;
-			else
-			{
-				if ((essai.getPion(4)==solut.getPion(1)) 
-					|| (essai.getPion(4)==solut.getPion(2)) 
-					|| (essai.getPion(4)==solut.getPion(3)))
-					valeur1=NOIR;
-				else
-					valeur1=NUL;
-			}
-		} catch (InvalidParametersException e) 
-		{
-			// on peut ignorer l'exception car un objet Combinaison a exactement 4 pions
-		}	
-		
+			//Premier passage pour trier les pions dans les tableaux correspondant selon leur valeur 
 			
+			int f = 0;
+			if (essai.getPion(1).equals(solut.getPion(1)))
+			{
+				valeur1=BLANC;
+				
+			}
+			else
+			{
+				tabPionFaux[f]=essai.getPion(1);
+				f++;
+			}
+			
+			if (essai.getPion(2).equals(solut.getPion(2)))
+			{
+				valeur2=BLANC;
+				
+			}
+			else
+			{
+				tabPionFaux[f]=essai.getPion(2);
+				f++;
+			}
+			
+			if (essai.getPion(3).equals(solut.getPion(3)))
+			{
+				valeur3=BLANC;
+				
+			}
+			else
+			{
+				tabPionFaux[f]=essai.getPion(3);
+				f++;
+			}
+			
+			if (essai.getPion(4).equals(solut.getPion(4)))
+			{
+				valeur4=BLANC;
+				
+			}
+			else
+			{
+				tabPionFaux[f]=essai.getPion(4);
+				f++;
+			}
+			// Deuxieme passage ...
+			
+			
+			if (!(essai.getPion(1).equals(solut.getPion(1))))// si different alors present dans tableau
+			{
+				for(Pion p : tabPionFaux)
+				{
+					if (solut.getPion(1).equals(p))
+					{
+						valeur1=NOIR;
+					}
+				}
+				if (valeur1!=NOIR)
+					valeur1=NUL;
+			}
+			
+			if (!(essai.getPion(2).equals(solut.getPion(2))))// si different alors present dans tableau
+			{
+				for(Pion p : tabPionFaux)
+				{
+					if (solut.getPion(1).equals(p))
+					{
+						valeur2=NOIR;
+					}
+				}
+				if (valeur2!=NOIR)
+					valeur2=NUL;
+			}
+			
+			if (!(essai.getPion(3).equals(solut.getPion(3))))// si different alors present dans tableau
+			{
+				for(Pion p : tabPionFaux)
+				{
+					if (solut.getPion(1).equals(p))
+					{
+						valeur3=NOIR;
+					}
+				}
+				if (valeur3!=NOIR)
+					valeur3=NUL;
+			}
+			
+			if (!(essai.getPion(4).equals(solut.getPion(4))))// si different alors present dans tableau
+			{
+				for(Pion p : tabPionFaux)
+				{
+					if (solut.getPion(1).equals(p))
+					{
+						valeur4=NOIR;
+					}
+				}
+				if (valeur4!=NOIR)
+					valeur4=NUL;
+			}
+			
+		}
+		}
+		catch (InvalidParametersException e) {}
+					
 	}
 	
 

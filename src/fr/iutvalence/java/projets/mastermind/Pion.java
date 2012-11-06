@@ -10,39 +10,39 @@ public class Pion {
 /**
  *  definition de la constante couleur ROUGE 
  */
-	public final static int ROUGE = 0;
+	//public final static int ROUGE = 0;
 	
 /**	definition de la constante couleur VERT 
  * 
  */
-	public final static int VERT = 1;
+	//public final static int VERT = 1;
 	
 /**	
  * definition de la constante couleur JAUNE 
  */
-	public final static int JAUNE = 2;
+	//public final static int JAUNE = 2;
 
 /**	
  * definition de la constante couleur BLEU 
  */
-	public final static int BLEU = 3;
+	//public final static int BLEU = 3;
 	
 	
 // FIXME corriger le commentaire 
 /**	
  * definition de la variable couleur 
  */
-	private int couleur;
+	private Couleur couleur;
 	 
 /**	
  * Constructeur de pion à partir d'un entier representant sa couleur
  */
-	 public Pion(int color){
+	 public Pion(Couleur color){
 		 couleur=color;		 
 	 }
 	 
 	 //FIXME obtenir la couleur ?
-	 public int getCouleur(){
+	 public Couleur getCouleur(){
 		  return this.couleur;
 		  }
 
@@ -84,7 +84,7 @@ public class Pion {
 	 
 	 // FIXME redéfinir toString (et tester)
 	 public String toString(){
-		  return "\tLa couleur du pion est "+this.couleur;
+		  return "La couleur du pion est "+this.couleur;
 		  }
 	
 	

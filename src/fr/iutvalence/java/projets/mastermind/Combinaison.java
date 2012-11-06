@@ -109,7 +109,7 @@ public class Combinaison {
 	
 	// FIXME redéfinir la méthode toString pour avoir une version affichable de la combinaison
 	public String toString(){
-		  return "\tPion 1 :"+this.pion1+", Pion 2 :"+this.pion2+", Pion 3 :"+this.pion3+", Pion 4 :"+this.pion4;
+		  return "Pion 1 :"+this.pion1.getCouleur()+", Pion 2 :"+this.pion2.getCouleur()+", Pion 3 :"+this.pion3.getCouleur()+", Pion 4 :"+this.pion4.getCouleur();
 		  }
 	
 	
