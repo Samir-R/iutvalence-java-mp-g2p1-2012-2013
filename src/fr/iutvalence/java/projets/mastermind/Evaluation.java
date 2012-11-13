@@ -1,12 +1,6 @@
 package fr.iutvalence.java.projets.mastermind;
 
-// FIXME remarque : l'évaluation ne peut pas être qu'une valeur. Elle représente le nombre de pions présents ou présents et bien placés.
 
-//FIXME Respecter la syntaxe JavaDoc
-
-
-
-// FIXME réécrire le commentaire (à discuter)
 /**
  * classe qui rend un objet vérifiant les règles du mastermind ! 		
  * 			 noir = dans la combinaison mais pas au bon endroit
@@ -15,42 +9,26 @@ package fr.iutvalence.java.projets.mastermind;
 public class Evaluation {
 	
 
-	/**	
-	 * definition de la constante valeur NUL 
-	 */
-	public final static int NUL = 0;
 
-	/**
-	 * 	 definition de la constante valeur NOIR 
-	 */
-	public final static int NOIR = 1;
-	
-	/**	
-	 * definition de la constante valeur BLANC 
-	 */
-	public final static int BLANC = 2;
-	
-	
-	// FIXME remplacer les 4 attributs par un seul (tableau)
 /**
  * definition de la valeur d'evaluation du pion 1
 */
-	private int valeur1;
+	private Couleur valeur1;
 	
 /**
  * definition de la valeur d'evaluation du pion 2
 */	
-	private int valeur2;
+	private Couleur valeur2;
 		
 /**
  *  definition de la valeur d'evaluation du pion 3
 */	
-	private int valeur3;
+	private Couleur valeur3;
 		
 /**
  *  definition de la valeur d'evaluation du pion 4
 */	
-	private int valeur4;
+	private Couleur valeur4;
 
 
 /**
@@ -69,10 +47,10 @@ public class Evaluation {
 		Pion tabPionFaux[] = new Pion[4];
 		if (essai.equals(solut))
 		{	
-			valeur1=BLANC;
-			valeur2=BLANC;
-			valeur3=BLANC;
-			valeur4=BLANC;
+			valeur1=Couleur.BLANC;
+			valeur2=Couleur.BLANC;
+			valeur3=Couleur.BLANC;
+			valeur4=Couleur.BLANC;
 		
 			return;
 		}
@@ -85,45 +63,45 @@ public class Evaluation {
 			int f = 0;
 			if (essai.getPion(1).equals(solut.getPion(1)))
 			{
-				valeur1=BLANC;
+				valeur1=Couleur.BLANC;
 				
 			}
 			else
 			{
-				tabPionFaux[f]=essai.getPion(1);
+				tabPionFaux[f]=solut.getPion(1);
 				f++;
 			}
 			
 			if (essai.getPion(2).equals(solut.getPion(2)))
 			{
-				valeur2=BLANC;
+				valeur2=Couleur.BLANC;
 				
 			}
 			else
 			{
-				tabPionFaux[f]=essai.getPion(2);
+				tabPionFaux[f]=solut.getPion(2);
 				f++;
 			}
 			
 			if (essai.getPion(3).equals(solut.getPion(3)))
 			{
-				valeur3=BLANC;
+				valeur3=Couleur.BLANC;
 				
 			}
 			else
 			{
-				tabPionFaux[f]=essai.getPion(3);
+				tabPionFaux[f]=solut.getPion(3);
 				f++;
 			}
 			
 			if (essai.getPion(4).equals(solut.getPion(4)))
 			{
-				valeur4=BLANC;
+				valeur4=Couleur.BLANC;
 				
 			}
 			else
 			{
-				tabPionFaux[f]=essai.getPion(4);
+				tabPionFaux[f]=solut.getPion(4);
 				f++;
 			}
 			// Deuxieme passage ...
@@ -133,52 +111,56 @@ public class Evaluation {
 			{
 				for(Pion p : tabPionFaux)
 				{
-					if (solut.getPion(1).equals(p))
+					if (essai.getPion(1).equals(p))
 					{
-						valeur1=NOIR;
+						valeur1=Couleur.NOIR;
+						//supprimer p
 					}
 				}
-				if (valeur1!=NOIR)
-					valeur1=NUL;
+				if (valeur1!=Couleur.NOIR)
+					valeur1=Couleur.NUL;
 			}
 			
 			if (!(essai.getPion(2).equals(solut.getPion(2))))// si different alors present dans tableau
 			{
 				for(Pion p : tabPionFaux)
 				{
-					if (solut.getPion(1).equals(p))
+					if (essai.getPion(2).equals(p))
 					{
-						valeur2=NOIR;
+						valeur2=Couleur.NOIR;
+						//supprimer p
 					}
 				}
-				if (valeur2!=NOIR)
-					valeur2=NUL;
+				if (valeur2!=Couleur.NOIR)
+					valeur2=Couleur.NUL;
 			}
 			
 			if (!(essai.getPion(3).equals(solut.getPion(3))))// si different alors present dans tableau
 			{
 				for(Pion p : tabPionFaux)
 				{
-					if (solut.getPion(1).equals(p))
+					if (essai.getPion(3).equals(p))
 					{
-						valeur3=NOIR;
+						valeur3=Couleur.NOIR;
+						//supprimer p
 					}
 				}
-				if (valeur3!=NOIR)
-					valeur3=NUL;
+				if (valeur3!=Couleur.NOIR)
+					valeur3=Couleur.NUL;
 			}
 			
 			if (!(essai.getPion(4).equals(solut.getPion(4))))// si different alors present dans tableau
 			{
 				for(Pion p : tabPionFaux)
 				{
-					if (solut.getPion(1).equals(p))
+					if (essai.getPion(4).equals(p))
 					{
-						valeur4=NOIR;
+						valeur4=Couleur.NOIR;
+						//supprimer p
 					}
 				}
-				if (valeur4!=NOIR)
-					valeur4=NUL;
+				if (valeur4!=Couleur.NOIR)
+					valeur4=Couleur.NUL;
 			}
 			
 		}
@@ -193,12 +175,4 @@ public class Evaluation {
 	public String toString(){
 		  return "\tPion 1 : "+this.valeur1+" , Pion 2 : "+this.valeur2+" , Pion 3 : "+this.valeur3+" , Pion 4 : "+this.valeur4;
 		  }
-
-	
-	
-	// FIXME écrire une application qui teste le constructeur dans des cas bien choisis
-	
-	
-	
-
 }

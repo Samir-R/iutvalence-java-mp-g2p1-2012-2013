@@ -1,47 +1,29 @@
 package fr.iutvalence.java.projets.mastermind;
-// FIXME réfléchir à l'utilité de cette classe
-
-
-//FIXME écrire un commentaire
+/**
+ * Classe permettant d'instancier des objets pions.
+ * Ces objets pions composerons une combinaison.
+ *  
+ * @author merahme
+ *
+ */
 public class Pion {
 	
 	
-// FIXME redéfinir couleur sous la forme d'une énumération
-/**
- *  definition de la constante couleur ROUGE 
- */
-	//public final static int ROUGE = 0;
-	
-/**	definition de la constante couleur VERT 
- * 
- */
-	//public final static int VERT = 1;
-	
-/**	
- * definition de la constante couleur JAUNE 
- */
-	//public final static int JAUNE = 2;
 
-/**	
- * definition de la constante couleur BLEU 
- */
-	//public final static int BLEU = 3;
-	
-	
-// FIXME corriger le commentaire 
 /**	
  * definition de la variable couleur 
  */
 	private Couleur couleur;
 	 
 /**	
- * Constructeur de pion à partir d'un entier representant sa couleur
+ * Constructeur de pion à partir d'une couleur(presente dans l'enumeration Couleur) 
+ * 
  */
 	 public Pion(Couleur color){
 		 couleur=color;		 
 	 }
 	 
-	 //FIXME obtenir la couleur ?
+	 
 	 public Couleur getCouleur(){
 		  return this.couleur;
 		  }
@@ -49,7 +31,7 @@ public class Pion {
 	 
 	
 	 
-	 // FIXME redéfinir equals
+	 // redéfinition de la methode equals
 	 public boolean equals(Object obj) {
 		  //On vérifie si les références d'objets sont identiques
 		  if (this == obj)
@@ -76,17 +58,29 @@ public class Pion {
 	 
 	 
 	 
-	 // FIXME redéfinir hashCode
+	 // redéfinir hashCode
 	 
 	 
 	 
 	 
 	 
-	 // FIXME redéfinir toString (et tester)
+	 //redéfinition de la methode toString
 	 public String toString(){
 		  return "La couleur du pion est "+this.couleur;
 		  }
 	
+	 
+ public void converIntCouleur(int c){
+		 
+		 if (c==0)
+			couleur=Couleur.ROUGE;
+		 if (c==1)
+			 couleur=Couleur.VERT;
+		 if (c==2)
+			 couleur=Couleur.JAUNE;
+		 if (c==3)
+			 couleur=Couleur.BLEU;
+		  }
 	
 	
 	

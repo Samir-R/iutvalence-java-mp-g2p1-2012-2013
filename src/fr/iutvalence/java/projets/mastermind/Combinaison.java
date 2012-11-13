@@ -8,7 +8,6 @@ package fr.iutvalence.java.projets.mastermind;
 public class Combinaison {
 	
 	
-	// FIXME remplacer les 4 attributs par un seul attribut (tableau)
 /**	 
  * definition du premier pion de la combinaison
 */	
@@ -36,7 +35,6 @@ public class Combinaison {
 	/** 
 	 * Constructeur de combinanison avec ses 4 pions pris en parametres
 	*/
-	// FIXME remplacer les 4 paramètres par un seul tableau et soulever une exception si il n'y a pas exactement 4 pions dans le tableau
 	public Combinaison (Pion p1, Pion p2, Pion p3, Pion p4){
 		pion1=p1;
 		pion2=p2;
@@ -45,8 +43,7 @@ public class Combinaison {
 	 }
 	
 	
-	// FIXME remplacer par une seule méthode getPion(int), soulevant une exception si le numéro est invalide
-	//Retourne la valeur du pion1
+	
 	
 	
 
@@ -107,7 +104,6 @@ public class Combinaison {
 
 	
 	
-	// FIXME redéfinir la méthode toString pour avoir une version affichable de la combinaison
 	public String toString(){
 		  return "Pion 1 :"+this.pion1.getCouleur()+", Pion 2 :"+this.pion2.getCouleur()+", Pion 3 :"+this.pion3.getCouleur()+", Pion 4 :"+this.pion4.getCouleur();
 		  }

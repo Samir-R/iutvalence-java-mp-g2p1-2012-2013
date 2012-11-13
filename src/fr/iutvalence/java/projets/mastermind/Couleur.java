@@ -5,7 +5,10 @@ public enum Couleur {
 	JAUNE("Jaune"),
 	ROUGE("Rouge"),
 	VERT("Vert"),
-	BLEU("Bleu");
+	BLEU("Bleu"),
+	NOIR("Noir"),
+	BLANC("Blanc"),
+	NUL("Rien");
 	
 	private String color = "";
 	   
@@ -17,5 +20,7 @@ public enum Couleur {
 	  public String toString(){
 	    return color;
 	  }
+	  
+	 
 	
 }
