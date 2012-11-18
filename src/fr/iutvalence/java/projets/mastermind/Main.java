@@ -1,5 +1,7 @@
+//FIXME à déplacer dans un autre paquetage
 package fr.iutvalence.java.projets.mastermind;
 
+// FIXME commentaire
 public class Main {
 
 	/**
@@ -7,10 +9,9 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-
-		for(Couleur color : Couleur.values()){
-		        System.out.println(color);
-		    }
+		for (Couleur color : Couleur.values()) {
+			System.out.println(color);
+		}
 	}
 
 }
