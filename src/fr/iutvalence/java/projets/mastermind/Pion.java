@@ -1,5 +1,7 @@
 package fr.iutvalence.java.projets.mastermind;
 
+
+
 /**
  * Classe permettant d'instancier des objets pions. Ces objets pions composerons
  * une combinaison.
@@ -12,15 +14,27 @@ public class Pion {
 	/**
 	 * definition de la variable couleur
 	 */
-	private Couleur couleur;
+	private final Couleur couleur;
 
+	/**
+	 * Constructeur de pion par défaut qui genere un pion aleatoirement
+	 * 
+	 * 
+	 */
+	public Pion() {
+		
+		//"couleur" du pion généré aleatoirement
+		
+		this.couleur = Couleur.alea();
+		}
+	
 	/**
 	 * Constructeur de pion à partir d'une couleur(presente dans l'enumeration
 	 * Couleur)
 	 * 
 	 */
 	public Pion(Couleur color) {
-		couleur = color;
+		this.couleur = color;
 	}
 
 	// FIXME commentaire
@@ -65,17 +79,6 @@ public class Pion {
 		return "La couleur du pion est " + this.couleur;
 	}
 
-	// FIXME commentaire
-	public void converIntCouleur(int c) {
 
-		if (c == 0)
-			couleur = Couleur.ROUGE;
-		if (c == 1)
-			couleur = Couleur.VERT;
-		if (c == 2)
-			couleur = Couleur.JAUNE;
-		if (c == 3)
-			couleur = Couleur.BLEU;
-	}
 
 }

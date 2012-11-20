@@ -1,5 +1,7 @@
 //FIXME à déplacer dans un autre paquetage
-package fr.iutvalence.java.projets.mastermind;
+package fr.iutvalence.java.projets.testmaster;
+
+import fr.iutvalence.java.projets.mastermind.Couleur;
 
 // FIXME commentaire
 public class Main {

@@ -8,50 +8,40 @@ package fr.iutvalence.java.projets.mastermind;
  */
 public class Combinaison {
 
-	// FIXME cimplifier en réécrivant avec un tableau de 4 pions
 	/**
-	 * definition du premier pion de la combinaison
+	 * definition du tableau contenant les 4 pions de la combinaison
 	 */
-	private Pion pion1;
+	private Pion[] pions;
 
 	/**
-	 * definition du deuxieme pion de la combinaison
+	 * Constructeur de combinanison par default qui utilise le constructeur de
+	 * pion par defaut
 	 */
-	private Pion pion2;
+	public Combinaison() {
+		this.pions = new Pion[4];
+		for (int i = 0; i <= 3; i++) {
+			pions[i] = new Pion();
+		}
 
-	/**
-	 * definition du troisieme pion de la combinaison
-	 */
-	private Pion pion3;
-
-	/**
-	 * definition du dernier pion de la combinaison
-	 */
-	private Pion pion4;
+	}
 
 	/**
 	 * Constructeur de combinanison avec ses 4 pions pris en parametres
 	 */
 	public Combinaison(Pion p1, Pion p2, Pion p3, Pion p4) {
-		pion1 = p1;
-		pion2 = p2;
-		pion3 = p3;
-		pion4 = p4;
+
+		Pion tabPionCreat[] = { p1, p2, p3, p4 };
+
+		for (int i = 1; i <= 4; i++) {
+			pions[i] = tabPionCreat[i];
+		}
+
 	}
 
 	public Pion getPion(int p) throws InvalidParametersException {
 
-		if (p == 1)
-			return this.pion1;
-
-		if (p == 2)
-			return this.pion2;
-
-		if (p == 3)
-			return this.pion3;
-
-		if (p == 4)
-			return this.pion4;
+		if (p >= 1 && p <= 4)
+			return this.pions[p - 1];
 		else
 			throw new InvalidParametersException();
 
@@ -76,13 +66,13 @@ public class Combinaison {
 		// Maintenant, on compare les attributs de nos objets
 
 		Combinaison solut = (Combinaison) obj;
-		if (!pion1.equals(solut.pion1))
+		if (!pions[0].equals(solut.pions[0]))
 			return false;
-		if (!pion2.equals(solut.pion2))
+		if (!pions[1].equals(solut.pions[1]))
 			return false;
-		if (!pion3.equals(solut.pion3))
+		if (!pions[2].equals(solut.pions[2]))
 			return false;
-		if (!pion4.equals(solut.pion4))
+		if (!pions[3].equals(solut.pions[3]))
 			return false;
 
 		return true;
@@ -93,10 +83,10 @@ public class Combinaison {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Pion 1 :" + this.pion1.getCouleur() + ", Pion 2 :"
-				+ this.pion2.getCouleur() + ", Pion 3 :"
-				+ this.pion3.getCouleur() + ", Pion 4 :"
-				+ this.pion4.getCouleur();
+		return "Pion 1 :" + this.pions[0].getCouleur() + ", Pion 2 :"
+				+ this.pions[1].getCouleur() + ", Pion 3 :"
+				+ this.pions[2].getCouleur() + ", Pion 4 :"
+				+ this.pions[3].getCouleur();
 	}
 
 }
