@@ -20,7 +20,7 @@ public class Combinaison {
 	public Combinaison() {
 		this.pions = new Pion[4];
 		for (int i = 0; i <= 3; i++) {
-			pions[i] = new Pion();
+			this.pions[i] = new Pion();
 		}
 
 	}
@@ -33,7 +33,7 @@ public class Combinaison {
 		Pion tabPionCreat[] = { p1, p2, p3, p4 };
 
 		for (int i = 1; i <= 4; i++) {
-			pions[i] = tabPionCreat[i];
+			this.pions[i] = tabPionCreat[i];
 		}
 
 	}
@@ -47,6 +47,28 @@ public class Combinaison {
 
 	}
 
+	/**
+	 * @see java.lang.Object#hashCode(java.lang.Object)
+	 */
+	
+	public int hashCode() {
+        int hash = 1;
+	
+	for(int i = 0; i < 5; i++){
+        switch(this.pions[i].getCouleur())
+		{
+			case  ROUGE : 	hash =	hash *	1;
+			case  JAUNE : 	hash =	hash *	2;
+			case  BLEU  : 	hash =	hash *	3;
+			default : 		hash =	hash *	4;
+		}
+    	}
+
+	return hash;
+}
+
+	
+	
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

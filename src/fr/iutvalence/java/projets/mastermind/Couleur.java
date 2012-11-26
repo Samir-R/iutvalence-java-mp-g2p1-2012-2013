@@ -16,6 +16,7 @@ public enum Couleur {
 	private Couleur(String color) {
 		this.color = color;
 	}
+	
 	//genere une couleur de pion aleatoirement
 	public static Couleur alea()
 	{
@@ -27,19 +28,6 @@ public enum Couleur {
 			default : 	return VERT;
 		}
 	}
-	
-	/*A faire convertit un entier en une couleur
-	 * public void converIntCouleur(int c) {
-
-		if (c == 0)
-			couleur = Couleur.ROUGE;
-		if (c == 1)
-			couleur = Couleur.VERT;
-		if (c == 2)
-			couleur = Couleur.JAUNE;
-		if (c == 3)
-			couleur = Couleur.BLEU;
-	}*/
 	
 	/**
 	 * @see java.lang.Enum#toString()

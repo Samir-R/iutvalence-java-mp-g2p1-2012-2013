@@ -40,7 +40,7 @@ public class Joueur {
 	}
 
 	public void setScore(int points) {
-		this.score = points;
+		this.score = this.score + points;
 	}
 
 }

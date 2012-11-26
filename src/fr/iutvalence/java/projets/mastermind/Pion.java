@@ -43,6 +43,20 @@ public class Pion {
 	}
 
 	
+	
+	public int hashCode() {
+        int hash = 1;
+        switch(this.couleur)
+		{
+			case  ROUGE : 	return  hash;
+			case  JAUNE : 	return (hash*2);
+			case  BLEU  : 	return (hash*3);
+			default : 		return (hash*4);
+		}
+    }
+	
+	
+	
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

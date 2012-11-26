@@ -17,16 +17,31 @@ public class Partie {
 	/**
 	 * la combinaison à trouver
 	 */
-	// private Combinaison aTrouver;
+	private Combinaison aTrouver;
 
+	/**
+	 * le joueur
+	 */
+	private Joueur player;
+	
+	
+	/**
+	 * le nombre de coups d'essai
+	 */
+	private int coups;
 
 	// FIXME détailler le commentaire
 	/**
 	 * création d'une partie qui prend en parametre un joueur, qui génére
 	 * automatiquement combinaison ,
 	 */
-	public Partie() {
-
+	public Partie(Joueur player) {
+		
+		//variables local
+		
+		this.aTrouver = new Combinaison();
+		this.player=player;
+		this.coups = 41;
 		// Joueur player ajouté en parametre
 
 		// création des pions, à partir des "couleurs" générées precedemment,
@@ -46,49 +61,34 @@ public class Partie {
 	// FIXME Il faut se rendre indépendant de l'entrée standard
 	public void jouer()
 	{
-				
-		Combinaison aTrouver=new Combinaison();
+		int Points = 980;		
+		//Combinaison aTrouver=new Combinaison();
 		
 		//declaration de l'objet Combinaison essai
 		Combinaison essai= new Combinaison();
 				
-		System.out.println(aTrouver);
+		System.out.println(this.aTrouver);
 		System.out.println("MASTERMIND");
 		do
-		{
+		{	
+				essai= new Combinaison();
 			
-			System.out.println("Saisie de la combinaison:");
-			System.out.println("\t 0:Rouge");
-			System.out.println("\t 1:Vert");
-			System.out.println("\t 2:Jaune");
-			System.out.println("\t 3:Bleu");
-			Scanner sc = new Scanner(System.in);
-			
-			try
-			{
-				System.out.println("Saisissez le premier pion : ");
-			    int p1 = sc.nextInt();
-			    essai.getPion(1).converIntCouleur(p1);
-			    System.out.println("Saisissez le deuxieme pion : ");
-			    int p2 = sc.nextInt();
-			    essai.getPion(2).converIntCouleur(p2);
-			    System.out.println("Saisissez le troisieme pion : ");
-			    int p3 = sc.nextInt();
-			    essai.getPion(3).converIntCouleur(p3);
-			    System.out.println("Saisissez le quatrieme pion : ");
-			    int p4 = sc.nextInt();
-			    essai.getPion(4).converIntCouleur(p4);
-			}
-			catch(InvalidParametersException e){ }
-		
-			Evaluation e1 = new Evaluation(essai,aTrouver);
+			System.out.println(essai+"\n");
+			Evaluation e1 = new Evaluation(essai,this.aTrouver);
 			System.out.println(e1.toString()+"\n");
-		
+			this.player.setScore(e1.nbPoints());
+			Points = Points - 20;
 			
-			
-		}while(!essai.equals(aTrouver));
+			this.coups-- ; 
+		}while((this.coups!= 0) && (!essai.equals(this.aTrouver)));
+		Points = Points + this.player.getScore();
+		System.out.println("Votre score est de " + Points + " points.");
+		if (!essai.equals(this.aTrouver))
+			System.out.println("Vous n'avez pas trouvez la solution");
+		else
+			System.out.println("Vous avez trouvez la solution");
 		
-		System.out.println("Partie Fini !!!");
+		System.out.println("Partie terminée !!!");
 		
 		
 	}
