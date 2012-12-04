@@ -1,6 +1,4 @@
 package fr.iutvalence.java.projets.fenetre;
-import fr.iutvalence.java.projets.mastermind.*;
-
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -9,17 +7,27 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import fr.iutvalence.java.projets.mastermind.Combinaison;
+import fr.iutvalence.java.projets.mastermind.Couleur;
+import fr.iutvalence.java.projets.mastermind.Evaluation;
+import fr.iutvalence.java.projets.mastermind.Joueur;
+import fr.iutvalence.java.projets.mastermind.Partie;
+import fr.iutvalence.java.projets.mastermind.Pion;
+
 
 public class Fenetre extends JFrame{ // implements ActionListener
- // private Panneau pan = new Panneau();
+	//definition du layout principal
 	CardLayout cl = new CardLayout();
+	//definition du conteneur principal
 	JPanel content = new JPanel();
 	  //Liste des noms de nos conteneurs pour la pile de cartes
 	  String[] listContent = {"CARD_1", "CARD_2", "CARD_3"};
@@ -28,15 +36,18 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	  private JTextField jtf = new JTextField("Joueur1");
 	
 	
-private JButton bouton = new JButton("mon bouton");
+
   private JButton verif = new JButton("Verifier");
   private Grille grille = new Grille();
   private JPanel containPartie = new JPanel();
   //Message de bienvenu
   private JLabel mess = new JLabel("");
-//Tableau stockant les éléments à afficher sur les boutons
-  String[] tab_string = {"R", "B", "J", "V"};
+  //message du score
+  private JLabel messScore = new JLabel("Votre Score : 0");
   
+//Tableau stockant les éléments à afficher sur les boutons
+  //String[] tab_string = {"R", "B", "J", "V"};
+  String[] tab_string = {"Pion/pion-rouge.JPG","Pion/pion-bleu.JPG","Pion/pion-jaune.JPG","Pion/pion-vert.JPG","Pion/pion-gris.JPG","Pion/pion-rose.JPG","Pion/pion-violet.JPG","Pion/pion-orange.JPG","Pion/pion-noir.JPG"};
   
   
   
@@ -48,12 +59,12 @@ private JButton bouton = new JButton("mon bouton");
 //Panel contenant les boutons de couleur
   JPanel PanBoutonColor = new JPanel();
   //dimension des bouton
-  private Dimension dim = new Dimension(50, 40);
+  private Dimension dim = new Dimension(60, 50);
   //Tableau d'image de pion
   PionImg[] tab_pion= new PionImg[96];
   //Indice de Tableau tab_pion
-  private int indPion = 0;
-  private int NbCoup = 0;//toujours <4
+  private int indPion;// = 0;
+  private int NbCoup;// = 0;//toujours <4
   
   
 //Declaration du joueur
@@ -67,16 +78,7 @@ private JButton bouton = new JButton("mon bouton");
     Combinaison essai = new Combinaison();
   
   
-
-  
-  
-  
-  
- // private PionImg p1 = new PionImg(1);
-  //private PionImg p2 = new PionImg(1);
-  
-  
-  public Fenetre(){
+ public Fenetre(){
 	  //Definition de la fenetre
     this.setTitle("MASTERMIND");
     this.setSize(600, 700);
@@ -126,37 +128,22 @@ private JButton bouton = new JButton("mon bouton");
     mess.setPreferredSize(new Dimension(220, 20));
     mess.setForeground(Color.blue);
     
-    
+    messScore.setForeground(Color.cyan);
+    JPanel PanScore = new JPanel();
+    PanScore.add(messScore);
+    PanScore.setBackground(Color.BLACK);
   
    //definition des boutons
+    PanBoutonColor.setLayout(new GridLayout(3, 3));
     for(int i = 0; i < tab_string.length; i++){
-        tab_button[i] = new JButton(tab_string[i]);
+      //  tab_button[i] = new JButton(tab_string[i]);
+        tab_button[i]= new JButton(new ImageIcon(tab_string[i]));
         tab_button[i].setPreferredSize(dim);
-        switch(i){
-        //Pour chaque bouton du tableau
-       //on définit sa couleur et son comportement à avoir grâce à un listener
-        case 0 :
-        	tab_button[i].setBackground(Color.RED);
-         // action a deter --> tab_button[i].addActionListener(new EgalListener());
-            break;
-        case 1 :
-        	tab_button[i].setBackground(Color.CYAN);
-            // action a deter --> tab_button[i].addActionListener(new EgalListener());
-             break;
-        case 2 :
-        	tab_button[i].setBackground(Color.YELLOW);
-            // action a deter --> tab_button[i].addActionListener(new EgalListener());
-            break;
-        default :
-        	tab_button[i].setBackground(Color.GREEN);
-            // action a deter --> tab_button[i].addActionListener(new EgalListener());
-            break;
-         
-        }
+        tab_button[i].addActionListener(new BoutonListenerPion());
         PanBoutonColor.add(tab_button[i]);
   
     }
-    PanBouton.setLayout(new GridLayout(8, 4));
+    PanBouton.setLayout(new GridLayout(6, 4));
     PanBouton.add(PanBoutonColor);
     PanBouton.add(verif);
     PanBouton.add(quit);
@@ -177,39 +164,9 @@ private JButton bouton = new JButton("mon bouton");
 	}
  
     
-   //JLabel azer = new JLabel(new ImageIcon("pion_vert.jpg" ));
-  // grille.add(azer);
-    
-    
-   // grille.add(new PionImg(2));
-   // grille.add(new PionImg(3));
-   // grille.add(p);
-    //grille.add(p2);
-    //grille.add(new Pion());
-     /*grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());
-    grille.add(new Pion());*/
-    //grille.add(new Pion());
-  //Nous ajoutons notre fenêtre à la liste des auditeurs de notre bouton autrement les classes internes cree ci-dessous
-  //Nous indiques à nos classes internes "d'écouter" nos boutons 
-    
-    tab_button[0].addActionListener(new BoutonListenerRouge());
-    tab_button[1].addActionListener(new BoutonListenerBleu());
-    tab_button[2].addActionListener(new BoutonListenerJaune());
-    tab_button[3].addActionListener(new BoutonListenerVert());
     verif.addActionListener(new BoutonListenerVerif());
     verif.setEnabled(false);
-    // desactiver un bouton --> tab_button[2].setEnabled(false);
+    
     
     content.setLayout(cl);
     //On ajoute les cartes à la pile avec un nom pour les retrouver
@@ -223,7 +180,7 @@ private JButton bouton = new JButton("mon bouton");
     containPartie.add(grille, BorderLayout.CENTER);
     containPartie.add(mess, BorderLayout.NORTH);
     containPartie.add(PanBouton, BorderLayout.EAST);
-    containPartie.add(bouton, BorderLayout.SOUTH);
+    containPartie.add(PanScore, BorderLayout.SOUTH);
     
     content.add(card1, listContent[0]);
     content.add(card2, listContent[1]);
@@ -236,42 +193,60 @@ private JButton bouton = new JButton("mon bouton");
     
   }
  
-//Classe écoutant notre bouton rouge
-  class BoutonListenerRouge implements ActionListener{
-    //Redéfinition de la méthode actionPerformed()
-    public void actionPerformed(ActionEvent arg0) {
-    	grille.remove(tab_pion[indPion]);
-    	essai.setPion(NbCoup+1, new Pion(Couleur.ROUGE));
-		  tab_pion[indPion] = new PionImg(1);
-		//refaire une boucle pour init. la grille sinon "grille.add(tab_pion[indPion])" ajoute à la fin
-		  for(int i=0; i<tab_pion.length; i++){
-		    	grille.add(tab_pion[i]);
-			}
-		 indPion++;
-		 if (NbCoup==3)
-		 {
-			 tab_button[0].setEnabled(false);
-			 tab_button[1].setEnabled(false);
-			 tab_button[2].setEnabled(false);
-			 tab_button[3].setEnabled(false);
-			 verif.setEnabled(true);
-			 NbCoup=0;
-		 }
-		 else
-			 NbCoup++;
-		 
-		 
-		  grille.updateUI(); 
-    }
-  }
-  
+
 //Classe écoutant notre bouton vert
-  class BoutonListenerVert implements ActionListener{
+  class BoutonListenerPion implements ActionListener{
 	    //Redéfinition de la méthode actionPerformed()
 	    public void actionPerformed(ActionEvent arg0) {
-	    	grille.remove(tab_pion[indPion]);
-	    	essai.setPion(NbCoup+1, new Pion(Couleur.VERT));
-			  tab_pion[indPion] = new PionImg(2);
+	    	
+	    	if(arg0.getSource() == tab_button[0]){
+				  grille.remove(tab_pion[indPion]);
+		    	  essai.setPion(NbCoup+1, new Pion(Couleur.ROUGE));
+				  tab_pion[indPion] = new PionImg(1);}
+	    	
+	    	if(arg0.getSource() == tab_button[1]){
+				  grille.remove(tab_pion[indPion]);
+		    	  essai.setPion(NbCoup+1, new Pion(Couleur.BLEU));
+				  tab_pion[indPion] = new PionImg(4);}
+	    	
+	    	if(arg0.getSource() == tab_button[2]){
+				  grille.remove(tab_pion[indPion]);
+		    	  essai.setPion(NbCoup+1, new Pion(Couleur.JAUNE));
+				  tab_pion[indPion] = new PionImg(3);}
+	    	
+	    	
+	    	if(arg0.getSource() == tab_button[3]){
+				  grille.remove(tab_pion[indPion]);
+		    	  essai.setPion(NbCoup+1, new Pion(Couleur.VERT));
+				  tab_pion[indPion] = new PionImg(2);}
+	    	
+	    	if(arg0.getSource() == tab_button[4]){
+				  grille.remove(tab_pion[indPion]);
+		    	  essai.setPion(NbCoup+1, new Pion(Couleur.GRIS));
+				  tab_pion[indPion] = new PionImg(8);}
+	    	
+	    	if(arg0.getSource() == tab_button[5]){
+				  grille.remove(tab_pion[indPion]);
+		    	  essai.setPion(NbCoup+1, new Pion(Couleur.ROSE));
+				  tab_pion[indPion] = new PionImg(9);}
+	    	
+	    	if(arg0.getSource() == tab_button[6]){
+				  grille.remove(tab_pion[indPion]);
+		    	  essai.setPion(NbCoup+1, new Pion(Couleur.VIOLET));
+				  tab_pion[indPion] = new PionImg(10);}
+	    	
+	    	if(arg0.getSource() == tab_button[7]){
+				  grille.remove(tab_pion[indPion]);
+		    	  essai.setPion(NbCoup+1, new Pion(Couleur.ORANGE));
+				  tab_pion[indPion] = new PionImg(11);}
+	    	
+	    	if(arg0.getSource() == tab_button[8]){
+				  grille.remove(tab_pion[indPion]);
+		    	  essai.setPion(NbCoup+1, new Pion(Couleur.NOIR));
+				  tab_pion[indPion] = new PionImg(12);}
+			
+				
+	    	
 			//refaire une boucle pour init. la grille sinon "grille.add(tab_pion[indPion])" ajoute à la fin
 			  for(int i=0; i<tab_pion.length; i++){
 			    	grille.add(tab_pion[i]);
@@ -279,10 +254,11 @@ private JButton bouton = new JButton("mon bouton");
 			 indPion++;
 			 if (NbCoup==3)
 			 {
-				 tab_button[0].setEnabled(false);
-				 tab_button[1].setEnabled(false);
-				 tab_button[2].setEnabled(false);
-				 tab_button[3].setEnabled(false);
+				 
+				 for(int i=0; i<tab_button.length; i++){
+					 tab_button[i].setEnabled(false);
+					}
+				
 				 verif.setEnabled(true);
 				 NbCoup=0;
 			 }
@@ -294,64 +270,17 @@ private JButton bouton = new JButton("mon bouton");
 	    }
 	  }
   
-//Classe écoutant notre bouton jaune
-  class BoutonListenerJaune implements ActionListener{
-	    //Redéfinition de la méthode actionPerformed()
-	    public void actionPerformed(ActionEvent arg0) {
-	    	grille.remove(tab_pion[indPion]);
-	    	essai.setPion(NbCoup+1, new Pion(Couleur.JAUNE));
-			  tab_pion[indPion] = new PionImg(3);
-			//refaire une boucle pour init. la grille sinon "grille.add(tab_pion[indPion])" ajoute à la fin
-			  for(int i=0; i<tab_pion.length; i++){
-			    	grille.add(tab_pion[i]);
-				}
-			 indPion++;
-			 if (NbCoup==3)
-			 {
-				 tab_button[0].setEnabled(false);
-				 tab_button[1].setEnabled(false);
-				 tab_button[2].setEnabled(false);
-				 tab_button[3].setEnabled(false);
-				 verif.setEnabled(true);
-				 NbCoup=0;
-			 }
-			 else
-				 NbCoup++;
-			  
-			 
-			 grille.updateUI(); 
-	    }
-	  }
   
-//Classe écoutant notre bouton bleu 
-  class BoutonListenerBleu implements ActionListener{
-	    //Redéfinition de la méthode actionPerformed()
-	    public void actionPerformed(ActionEvent arg0) {
-	    	grille.remove(tab_pion[indPion]);
-	    	essai.setPion(NbCoup+1, new Pion(Couleur.BLEU));
-			  tab_pion[indPion] = new PionImg(4);
-			//refaire une boucle pour init. la grille sinon "grille.add(tab_pion[indPion])" ajoute à la fin
-			  for(int i=0; i<tab_pion.length; i++){
-			    	grille.add(tab_pion[i]);
-				}
-			 indPion++;
-			 if (NbCoup==3)
-			 {
-				 tab_button[0].setEnabled(false);
-				 tab_button[1].setEnabled(false);
-				 tab_button[2].setEnabled(false);
-				 tab_button[3].setEnabled(false);
-				 verif.setEnabled(true);
-				 NbCoup=0;
-			 }
-			 else
-				 NbCoup++;
-			 
-			 
-			  grille.updateUI(); 
-	    }
-	  }
-  //Classe écoutant notre bouton bleu 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  //Classe écoutant notre bouton verif
   class BoutonListenerVerif implements ActionListener{
 	    //Redéfinition de la méthode actionPerformed()
 	    public void actionPerformed(ActionEvent arg0) {
@@ -396,15 +325,17 @@ private JButton bouton = new JButton("mon bouton");
 	    		
 	    		
 				
-				//System.out.println(indPion);
+
 			}
 	    	
-	    		tab_button[0].setEnabled(true);
-				 tab_button[1].setEnabled(true);
-				 tab_button[2].setEnabled(true);
-				 tab_button[3].setEnabled(true);
+	    	for(int i=0; i<tab_button.length; i++){
+				 tab_button[i].setEnabled(true);
+				}
+	    	
 				 verif.setEnabled(false);
 				 NbCoup=0;
+				 player.setScore(e1.nbPoints());
+				 messScore.setText("Votre Score : " + player.getScore());
 			
 			 
 			  grille.updateUI(); 
@@ -418,8 +349,9 @@ private JButton bouton = new JButton("mon bouton");
 	        if(++indice > 2)
 	          indice = 0;
 	        //Via cette instruction, on passe au conteneur correspondant au nom fourni en paramètre
+	        jtf.setText("Joueur1");
 	        cl.show(content, listContent[indice]);
-	      }
+	     }
 	  }
   
   class BoutonListenerStart implements ActionListener{
@@ -431,13 +363,28 @@ private JButton bouton = new JButton("mon bouton");
 	        p = new Partie(player);
 	        System.out.println(player.getJoueur());
 	        System.out.println(p.getSolut());
-	        mess.setText("Bienvenu à toi, "+ player.getJoueur()+ ",prêt pour une partie?");
+	        mess.setText("Bienvenue à toi "+ player.getJoueur()+ " ! Prêt pour une partie?");
+	      
+	        
+	        //Réinitialisation du tableau tab_pion, avec l'image "vide.jpg"(à fond blanc)
+	        for(int i=0; i<tab_pion.length; i++){
+	        	grille.remove(tab_pion[i]);
+	        	tab_pion[i] = new PionImg(0);
+    			//refaire une boucle pour init. la grille sinon "grille.add(tab_pion[indPion])" ajoute à la fin
+	        	for(int j=0; j<tab_pion.length; j++){
+			    	grille.add(tab_pion[j]);
+    				}
+	        	
+	        }
+	        indPion = 0;
+	        NbCoup = 0;
+	       	        
 	        //Via cette instruction, on passe au conteneur correspondant au nom fourni en paramètre
 	        cl.show(content, listContent[indice]);
 	      }
 	  }
   
-  //this.getContentPane().add(new JButton("1"));
+ 
      
    
 }

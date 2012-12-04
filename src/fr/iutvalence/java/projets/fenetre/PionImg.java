@@ -27,22 +27,22 @@ public class PionImg extends JPanel implements Serializable {
     		}
     		if (this.i==1)
     		{
-    	      Image img = ImageIO.read(new File("pion_rouge.jpg"));
+    	      Image img = ImageIO.read(new File("Pion/pion-rouge.JPG"));
     	      g.drawImage(img, 1, 1, 41, 40, this);
     		}
     		if (this.i==2)
     	      {	
-    	    	  Image img = ImageIO.read(new File("pion_vert.jpg"));
+    	    	  Image img = ImageIO.read(new File("Pion/pion-vert.JPG"));
         	      g.drawImage(img, 1, 1, 41, 40, this);
     	      }
     		if (this.i==3)
     		{
-    	      Image img = ImageIO.read(new File("pion_jaune.jpg"));
+    	      Image img = ImageIO.read(new File("Pion/pion-jaune.JPG"));
     	      g.drawImage(img, 1, 1, 41, 40, this);
     		}
     		if (this.i==4)
     		{
-    	      Image img = ImageIO.read(new File("pion_bleu.jpg"));
+    	      Image img = ImageIO.read(new File("Pion/pion-bleu.JPG"));
     	      g.drawImage(img, 1, 1, 41, 40, this);
     		}
     		if (this.i==5)
@@ -58,6 +58,31 @@ public class PionImg extends JPanel implements Serializable {
     		if (this.i==7)
     		{
     	      Image img = ImageIO.read(new File("pion_nul.jpg"));
+    	      g.drawImage(img, 1, 1, 41, 40, this);
+    		}
+    		if (this.i==8)
+    		{
+    	      Image img = ImageIO.read(new File("Pion/pion-gris.JPG"));
+    	      g.drawImage(img, 1, 1, 41, 40, this);
+    		}
+    		if (this.i==9)
+    		{
+    	      Image img = ImageIO.read(new File("Pion/pion-rose.JPG"));
+    	      g.drawImage(img, 1, 1, 41, 40, this);
+    		}
+    		if (this.i==10)
+    		{
+    	      Image img = ImageIO.read(new File("Pion/pion-violet.JPG"));
+    	      g.drawImage(img, 1, 1, 41, 40, this);
+    		}
+    		if (this.i==11)
+    		{
+    	      Image img = ImageIO.read(new File("Pion/pion-orange.JPG"));
+    	      g.drawImage(img, 1, 1, 41, 40, this);
+    		}
+    		if (this.i==12)
+    		{
+    	      Image img = ImageIO.read(new File("Pion/pion-noir.JPG"));
     	      g.drawImage(img, 1, 1, 41, 40, this);
     		}
     		//g.drawImage(img, 0, 0, this);
