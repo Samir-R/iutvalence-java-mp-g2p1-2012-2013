@@ -14,7 +14,8 @@ public class Evaluation {
 	/**
 	 * definition du tableau contenant les 4 pions de la combinaison
 	 */
-	private Couleur tabEval[] = new Couleur[4];
+	//private Couleur tabEval[] = new Couleur[4];
+	public Couleur tabEval[] = new Couleur[4];
 	
 	
 	/**

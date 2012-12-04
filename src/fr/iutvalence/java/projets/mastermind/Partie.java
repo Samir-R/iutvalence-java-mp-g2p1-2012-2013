@@ -57,6 +57,13 @@ public class Partie {
 		// Combinaison aTrouver= null;
 
 	}
+	
+	public Combinaison getSolut(){
+
+			return this.aTrouver;
+		
+
+	}
 
 	// FIXME Il faut se rendre indépendant de l'entrée standard
 	public void jouer()

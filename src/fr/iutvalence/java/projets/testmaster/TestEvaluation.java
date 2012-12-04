@@ -1,5 +1,6 @@
 package fr.iutvalence.java.projets.testmaster;
 
+import fr.iutvalence.java.projets.fenetre.Fenetre;
 import fr.iutvalence.java.projets.mastermind.Joueur;
 import fr.iutvalence.java.projets.mastermind.Partie;
 
@@ -34,10 +35,12 @@ public class TestEvaluation {
 		 * 
 		 * // Pion p=new Pion(Couleur.ROUGE); // p.converIntCouleur(2); //
 		 * System.out.println(p);
-		 */
+		 
 		Joueur player = new Joueur("Joueur1");
 		Partie p = new Partie(player);
-		p.jouer();
+		p.jouer();*/
+		
+		Fenetre fen = new Fenetre();
 
 	}
 

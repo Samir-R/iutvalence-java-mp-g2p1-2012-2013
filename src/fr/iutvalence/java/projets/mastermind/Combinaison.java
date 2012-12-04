@@ -46,6 +46,13 @@ public class Combinaison {
 			throw new InvalidParametersException();
 
 	}
+	
+	public void setPion(int i, Pion p){
+
+		this.pions[i - 1]=p;
+		
+
+	}
 
 	/**
 	 * @see java.lang.Object#hashCode(java.lang.Object)
