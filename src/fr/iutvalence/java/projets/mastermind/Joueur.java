@@ -31,7 +31,7 @@ public class Joueur {
 
 	}
 
-	public String getJoueur() {
+	public String getPseudo() {
 		return this.pseudo;
 	}
 

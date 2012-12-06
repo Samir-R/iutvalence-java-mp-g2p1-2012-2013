@@ -24,7 +24,7 @@ import fr.iutvalence.java.projets.mastermind.Partie;
 import fr.iutvalence.java.projets.mastermind.Pion;
 
 
-public class Fenetre extends JFrame{ // implements ActionListener
+public class Fenetreb extends JFrame{ // implements ActionListener
 	//definition du layout principal
 	CardLayout cl = new CardLayout();
 	//definition du conteneur principal
@@ -66,19 +66,14 @@ public class Fenetre extends JFrame{ // implements ActionListener
   private int indPion;// = 0;
   private int NbCoup;// = 0;//toujours <4
   
-  
-//Declaration du joueur
-  Joueur player;// = new Joueur(jtf.getText());
+
 	
 //Declaration de la partie
   Partie p;// = new Partie(player);
   
   
-  //Declaration des combinaisons(combinaison aTrouver dans la class Partie)
-    Combinaison essai = new Combinaison();
   
-  
- public Fenetre(){
+ public Fenetreb(){
 	  //Definition de la fenetre
     this.setTitle("MASTERMIND");
     this.setSize(600, 700);
@@ -201,48 +196,48 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	    	
 	    	if(arg0.getSource() == tab_button[0]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.ROUGE));
-				  tab_pion[indPion] = new PionImg(1);}
+				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.ROUGE));
+		    	  tab_pion[indPion] = new PionImg(1);}
 	    	
 	    	if(arg0.getSource() == tab_button[1]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.BLEU));
+				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.BLEU));
 				  tab_pion[indPion] = new PionImg(4);}
 	    	
 	    	if(arg0.getSource() == tab_button[2]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.JAUNE));
+				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.JAUNE));
 				  tab_pion[indPion] = new PionImg(3);}
 	    	
 	    	
 	    	if(arg0.getSource() == tab_button[3]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.VERT));
+				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.VERT));
 				  tab_pion[indPion] = new PionImg(2);}
 	    	
 	    	if(arg0.getSource() == tab_button[4]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.GRIS));
+				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.GRIS));
 				  tab_pion[indPion] = new PionImg(8);}
 	    	
 	    	if(arg0.getSource() == tab_button[5]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.ROSE));
+				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.ROSE));
 				  tab_pion[indPion] = new PionImg(9);}
 	    	
 	    	if(arg0.getSource() == tab_button[6]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.VIOLET));
+				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.VIOLET));
 				  tab_pion[indPion] = new PionImg(10);}
 	    	
 	    	if(arg0.getSource() == tab_button[7]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.ORANGE));
+				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.ORANGE));
 				  tab_pion[indPion] = new PionImg(11);}
 	    	
 	    	if(arg0.getSource() == tab_button[8]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.NOIR));
+				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.NOIR));
 				  tab_pion[indPion] = new PionImg(12);}
 			
 				
@@ -285,11 +280,12 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	    //Redéfinition de la méthode actionPerformed()
 	    public void actionPerformed(ActionEvent arg0) {
 	    	System.out.println(indPion);
-	    	Evaluation e1 = new Evaluation(essai,p.getSolut());
+	    	p.setEval();
+	    	//Evaluation e1 = new Evaluation(p.getEssai(),p.getSolut());
 	    	for(int j = 0; j <= 3; j++)
 			{
 	    		
-	    	if (e1.tabEval[j]== Couleur.BLANC)
+	    	if (p.getEval().tabEval[j]== Couleur.BLANC)
 	    		{
 	    			grille.remove(tab_pion[indPion]);
 	    			tab_pion[indPion] = new PionImg(5);
@@ -300,7 +296,7 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	    			  indPion++;
 	    		}
 
-	    		if (e1.tabEval[j]== Couleur.NOIR)
+	    		if (p.getEval().tabEval[j]== Couleur.NOIR)
 	    		{
 	    			grille.remove(tab_pion[indPion]);
 	    			tab_pion[indPion] = new PionImg(6);
@@ -312,7 +308,7 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	    		}
 	    		
 
-	    		if (e1.tabEval[j]== Couleur.NUL)
+	    		if (p.getEval().tabEval[j]== Couleur.NUL)
 	    		{
 	    			grille.remove(tab_pion[indPion]);
 	    			tab_pion[indPion] = new PionImg(7);
@@ -334,8 +330,9 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	    	
 				 verif.setEnabled(false);
 				 NbCoup=0;
-				 player.setScore(e1.nbPoints());
-				 messScore.setText("Votre Score : " + player.getScore());
+				 p.getJoueur();
+				 p.getJoueur().setScore(p.getEval().nbPoints());
+				 messScore.setText("Votre Score : " + p.getJoueur().getScore());
 			
 			 
 			  grille.updateUI(); 
@@ -359,11 +356,10 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	  public void actionPerformed(ActionEvent event){				
 	        if(++indice > 2)
 	          indice = 0;
-	        player = new Joueur(jtf.getText());
-	        p = new Partie(player);
-	        System.out.println(player.getPseudo());
+	        p = new Partie(jtf.getText());
+	        System.out.println(p.getJoueur().getPseudo());
 	        System.out.println(p.getSolut());
-	        mess.setText("Bienvenue à toi "+ player.getPseudo()+ " ! Prêt pour une partie?");
+	        mess.setText("Bienvenue à toi "+ p.getJoueur().getPseudo()+ " ! Prêt pour une partie?");
 	      
 	        
 	        //Réinitialisation du tableau tab_pion, avec l'image "vide.jpg"(à fond blanc)

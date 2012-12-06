@@ -18,6 +18,17 @@ public class Partie {
 	 * la combinaison à trouver
 	 */
 	private Combinaison aTrouver;
+	
+	/**
+	 * la combinaison d'essai
+	 */
+	private Combinaison essai;
+
+	/**
+	 * l'evaluation
+	 */
+	private Evaluation eval;
+
 
 	/**
 	 * le joueur
@@ -33,39 +44,133 @@ public class Partie {
 	// FIXME détailler le commentaire
 	/**
 	 * création d'une partie qui prend en parametre un joueur, qui génére
-	 * automatiquement combinaison ,
+	 * automatiquement combinaison la combinaison aTrouver
 	 */
 	public Partie(Joueur player) {
 		
-		//variables local
-		
 		this.aTrouver = new Combinaison();
 		this.player=player;
-		this.coups = 41;
-		// Joueur player ajouté en parametre
-
-		// création des pions, à partir des "couleurs" générées precedemment,
-		// composant
-		// la combinaison aTrouver
-		/*
-		 * Pion p1 = new Pion(num1); Pion p2 = new Pion(num2); Pion p3 = new
-		 * Pion(num3); Pion p4 = new Pion(num4);
-		 */
-
-		// declaration de l'objet combinaison aTrouver à partir des pions crées
-		// precedemment **/
-		// Combinaison aTrouver= null;
-
+		this.coups = 0;
 	}
 	
+	
+	/**
+	 * création d'une partie qui prend en parametre le pseudo du joueur 
+	 * et le crée à partir de celui-ci, et qui génére
+	 * automatiquement la combinaison aTrouver
+	 */
+	public Partie(String pseudo) {
+		
+		this.aTrouver = new Combinaison();
+		this.player=new Joueur(pseudo);
+		this.coups = 0;
+	}
+	
+	
+	
+	
+	
+	//retourne la combinaison a trouver
 	public Combinaison getSolut(){
 
 			return this.aTrouver;
 		
 
 	}
+	
 
-	// FIXME Il faut se rendre indépendant de l'entrée standard
+	//retourne la combinaison essai
+	public Combinaison getEssai(){
+
+		return this.essai;
+	
+
+	}
+	
+	//retourne le joueur
+		public Joueur getJoueur(){
+
+				return this.player;
+			
+
+		}
+		
+		
+	//retourne l'evaluation
+	public Evaluation getEval(){
+
+		return this.eval;
+	
+
+	}
+
+	//permet de lanser une evaluation et appelle la fonction increment()
+	public void setEval(){
+
+		this.eval = new Evaluation(this.essai,this.aTrouver);
+		increment();
+		
+	}
+
+	// retourne Vrai tantque evalNbcoups()(est vrai) ou pasTrouve()(rend vrai)
+	public boolean jouer()
+	{
+		
+		
+		while((this.evalNbcoups()) && (pasTrouve()))
+		{
+			return true;
+		}
+		return false;
+		
+	}
+	
+	// retourne Vrai tantque le coups < 12
+		public boolean evalNbcoups()
+		{
+			
+			
+			while(this.coups < 12 ) 
+			{
+				return true;
+			}
+			return false;
+			
+		}
+		
+		// retourne Vrai tantque la sotuion n'est pas trouvée
+		public boolean pasTrouve()
+		{
+					
+					
+			while((!this.essai.equals(this.aTrouver))) 
+			{
+				return true;
+			}
+				return false;
+				
+		}
+		
+		//fonction qui incremente le nombre de coups et appelle la fonction jouer()
+		public void increment(){
+
+			this.coups ++;
+			jouer();			
+		}
+		
+
+		
+		public void gestScore(){
+
+			
+			this.player.setScore(this.eval.nbPoints());
+			this.coups ++;
+			jouer();			
+		}
+
+		
+		
+	/*
 	public void jouer()
 	{
 		int Points = 980;		
@@ -98,6 +203,6 @@ public class Partie {
 		System.out.println("Partie terminée !!!");
 		
 		
-	}
+	}*/
 	
 }
