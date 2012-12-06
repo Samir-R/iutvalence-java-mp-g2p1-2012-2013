@@ -40,6 +40,8 @@ public class Partie {
 	 * le nombre de coups d'essai
 	 */
 	private int coups;
+	
+	
 
 	// FIXME détailler le commentaire
 	/**
@@ -51,6 +53,7 @@ public class Partie {
 		this.aTrouver = new Combinaison();
 		this.player=player;
 		this.coups = 0;
+		
 	}
 	
 	
@@ -62,8 +65,10 @@ public class Partie {
 	public Partie(String pseudo) {
 		
 		this.aTrouver = new Combinaison();
+		this.essai = new Combinaison();
 		this.player=new Joueur(pseudo);
 		this.coups = 0;
+		
 	}
 	
 	
@@ -108,6 +113,7 @@ public class Partie {
 	public void setEval(){
 
 		this.eval = new Evaluation(this.essai,this.aTrouver);
+		gestScore();
 		increment();
 		
 	}
@@ -159,13 +165,12 @@ public class Partie {
 		}
 		
 
-		
+		//fonction qui gere les Pionts
 		public void gestScore(){
 
 			
 			this.player.setScore(this.eval.nbPoints());
-			this.coups ++;
-			jouer();			
+						
 		}
 
 		

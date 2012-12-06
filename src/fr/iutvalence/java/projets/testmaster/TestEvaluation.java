@@ -1,8 +1,6 @@
 package fr.iutvalence.java.projets.testmaster;
 
-import fr.iutvalence.java.projets.fenetre.Fenetre;
-import fr.iutvalence.java.projets.mastermind.Joueur;
-import fr.iutvalence.java.projets.mastermind.Partie;
+import fr.iutvalence.java.projets.fenetre.*;
 
 /**
  * 
@@ -40,7 +38,7 @@ public class TestEvaluation {
 		Partie p = new Partie(player);
 		p.jouer();*/
 		
-		Fenetre fen = new Fenetre();
+		Fenetreb fen = new Fenetreb();
 
 	}
 

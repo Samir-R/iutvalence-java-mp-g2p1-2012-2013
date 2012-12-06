@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,10 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import fr.iutvalence.java.projets.mastermind.Combinaison;
 import fr.iutvalence.java.projets.mastermind.Couleur;
-import fr.iutvalence.java.projets.mastermind.Evaluation;
-import fr.iutvalence.java.projets.mastermind.Joueur;
 import fr.iutvalence.java.projets.mastermind.Partie;
 import fr.iutvalence.java.projets.mastermind.Pion;
 
@@ -64,7 +60,7 @@ public class Fenetreb extends JFrame{ // implements ActionListener
   PionImg[] tab_pion= new PionImg[96];
   //Indice de Tableau tab_pion
   private int indPion;// = 0;
-  private int NbCoup;// = 0;//toujours <4
+  //private int NbCoup;// = 0;//toujours <4
   
 
 	
@@ -196,48 +192,48 @@ public class Fenetreb extends JFrame{ // implements ActionListener
 	    	
 	    	if(arg0.getSource() == tab_button[0]){
 				  grille.remove(tab_pion[indPion]);
-				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.ROUGE));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.ROUGE));
 		    	  tab_pion[indPion] = new PionImg(1);}
 	    	
 	    	if(arg0.getSource() == tab_button[1]){
 				  grille.remove(tab_pion[indPion]);
-				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.BLEU));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.BLEU));
 				  tab_pion[indPion] = new PionImg(4);}
 	    	
 	    	if(arg0.getSource() == tab_button[2]){
 				  grille.remove(tab_pion[indPion]);
-				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.JAUNE));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.JAUNE));
 				  tab_pion[indPion] = new PionImg(3);}
 	    	
 	    	
 	    	if(arg0.getSource() == tab_button[3]){
 				  grille.remove(tab_pion[indPion]);
-				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.VERT));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.VERT));
 				  tab_pion[indPion] = new PionImg(2);}
 	    	
 	    	if(arg0.getSource() == tab_button[4]){
 				  grille.remove(tab_pion[indPion]);
-				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.GRIS));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.GRIS));
 				  tab_pion[indPion] = new PionImg(8);}
 	    	
 	    	if(arg0.getSource() == tab_button[5]){
 				  grille.remove(tab_pion[indPion]);
-				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.ROSE));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.ROSE));
 				  tab_pion[indPion] = new PionImg(9);}
 	    	
 	    	if(arg0.getSource() == tab_button[6]){
 				  grille.remove(tab_pion[indPion]);
-				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.VIOLET));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.VIOLET));
 				  tab_pion[indPion] = new PionImg(10);}
 	    	
 	    	if(arg0.getSource() == tab_button[7]){
 				  grille.remove(tab_pion[indPion]);
-				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.ORANGE));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.ORANGE));
 				  tab_pion[indPion] = new PionImg(11);}
 	    	
 	    	if(arg0.getSource() == tab_button[8]){
 				  grille.remove(tab_pion[indPion]);
-				  p.getEssai().setPion(NbCoup+1, new Pion(Couleur.NOIR));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.NOIR));
 				  tab_pion[indPion] = new PionImg(12);}
 			
 				
@@ -247,7 +243,8 @@ public class Fenetreb extends JFrame{ // implements ActionListener
 			    	grille.add(tab_pion[i]);
 				}
 			 indPion++;
-			 if (NbCoup==3)
+			
+			 if (!p.getEssai().evalCoupPion())
 			 {
 				 
 				 for(int i=0; i<tab_button.length; i++){
@@ -255,12 +252,12 @@ public class Fenetreb extends JFrame{ // implements ActionListener
 					}
 				
 				 verif.setEnabled(true);
-				 NbCoup=0;
+				 //NbCoup=0;
 			 }
-			 else
-				 NbCoup++;
+			// else
+				// NbCoup++;
 			 
-			 
+			 System.out.println(p.getEssai().getCoupPion());
 			  grille.updateUI(); 
 	    }
 	  }
@@ -279,7 +276,7 @@ public class Fenetreb extends JFrame{ // implements ActionListener
   class BoutonListenerVerif implements ActionListener{
 	    //Redéfinition de la méthode actionPerformed()
 	    public void actionPerformed(ActionEvent arg0) {
-	    	System.out.println(indPion);
+	    	//System.out.println(indPion);
 	    	p.setEval();
 	    	//Evaluation e1 = new Evaluation(p.getEssai(),p.getSolut());
 	    	for(int j = 0; j <= 3; j++)
@@ -329,11 +326,11 @@ public class Fenetreb extends JFrame{ // implements ActionListener
 				}
 	    	
 				 verif.setEnabled(false);
-				 NbCoup=0;
+				// NbCoup=0;
 				 p.getJoueur();
-				 p.getJoueur().setScore(p.getEval().nbPoints());
+				 
 				 messScore.setText("Votre Score : " + p.getJoueur().getScore());
-			
+				 
 			 
 			  grille.updateUI(); 
 	    }
@@ -373,7 +370,7 @@ public class Fenetreb extends JFrame{ // implements ActionListener
 	        	
 	        }
 	        indPion = 0;
-	        NbCoup = 0;
+	       // NbCoup = 0;
 	       	        
 	        //Via cette instruction, on passe au conteneur correspondant au nom fourni en paramètre
 	        cl.show(content, listContent[indice]);

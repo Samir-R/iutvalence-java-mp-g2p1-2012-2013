@@ -12,6 +12,11 @@ public class Combinaison {
 	 * definition du tableau contenant les 4 pions de la combinaison
 	 */
 	private Pion[] pions;
+	
+	/**
+	 * le nombre de coups d'essai de pion sur une combinaison(jamais < 3)
+	 */
+	private int coupPion;
 
 	/**
 	 * Constructeur de combinanison par default qui utilise le constructeur de
@@ -22,6 +27,7 @@ public class Combinaison {
 		for (int i = 0; i <= 3; i++) {
 			this.pions[i] = new Pion();
 		}
+		this.coupPion = 0;
 
 	}
 
@@ -35,6 +41,7 @@ public class Combinaison {
 		for (int i = 1; i <= 4; i++) {
 			this.pions[i] = tabPionCreat[i];
 		}
+		this.coupPion = 0;
 
 	}
 
@@ -47,9 +54,24 @@ public class Combinaison {
 
 	}
 	
+	//methode permetant de saisir le pion de la combinaison à l'indice i et mdofie ainsi le 
 	public void setPion(int i, Pion p){
 
-		this.pions[i - 1]=p;
+
+		
+		this.pions[i-1]=p;
+		if (this.coupPion != 3)
+			this.coupPion ++;
+		else
+			this.coupPion = 0;
+		
+		
+
+	}
+	
+	public int getCoupPion(){
+
+		return this.coupPion;
 		
 
 	}
@@ -116,6 +138,19 @@ public class Combinaison {
 				+ this.pions[1].getCouleur() + ", Pion 3 :"
 				+ this.pions[2].getCouleur() + ", Pion 4 :"
 				+ this.pions[3].getCouleur();
+	}
+	
+	
+	//Methode evaluant CoupPion
+	public boolean evalCoupPion()
+	{
+		
+		
+		if (this.coupPion != 3)
+			return true;
+		else
+			return false;
+		
 	}
 
 }
