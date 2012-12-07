@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,10 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import fr.iutvalence.java.projets.mastermind.Combinaison;
 import fr.iutvalence.java.projets.mastermind.Couleur;
-import fr.iutvalence.java.projets.mastermind.Evaluation;
-import fr.iutvalence.java.projets.mastermind.Joueur;
 import fr.iutvalence.java.projets.mastermind.Partie;
 import fr.iutvalence.java.projets.mastermind.Pion;
 
@@ -32,10 +28,9 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	  //Liste des noms de nos conteneurs pour la pile de cartes
 	  String[] listContent = {"CARD_1", "CARD_2", "CARD_3"};
 	  int indice = 0;
-	//pseudo du joueur
+	//zone de texte contenant le pseudo du joueur
 	  private JTextField jtf = new JTextField("Joueur1");
-	
-	
+	  
 
   private JButton verif = new JButton("Verifier");
   private Grille grille = new Grille();
@@ -64,18 +59,13 @@ public class Fenetre extends JFrame{ // implements ActionListener
   PionImg[] tab_pion= new PionImg[96];
   //Indice de Tableau tab_pion
   private int indPion;// = 0;
-  private int NbCoup;// = 0;//toujours <4
+  //private int NbCoup;// = 0;//toujours <4
   
-  
-//Declaration du joueur
-  Joueur player;// = new Joueur(jtf.getText());
+
 	
 //Declaration de la partie
   Partie p;// = new Partie(player);
   
-  
-  //Declaration des combinaisons(combinaison aTrouver dans la class Partie)
-    Combinaison essai = new Combinaison();
   
   
  public Fenetre(){
@@ -96,6 +86,8 @@ public class Fenetre extends JFrame{ // implements ActionListener
     jouer.addActionListener(new BoutonListenerJouer());
     JButton start = new JButton("Commencez une Partie");
     start.addActionListener(new BoutonListenerStart());
+    JButton rejouer = new JButton("Rejouer");
+    rejouer.addActionListener(new BoutonListenerReStart());
     JButton quit = new JButton("Quitter la partie");
     quit.addActionListener(new BoutonListenerJouer());
     card1.add(jouer);
@@ -146,7 +138,9 @@ public class Fenetre extends JFrame{ // implements ActionListener
     PanBouton.setLayout(new GridLayout(6, 4));
     PanBouton.add(PanBoutonColor);
     PanBouton.add(verif);
+    PanBouton.add(rejouer);
     PanBouton.add(quit);
+    
     
    //couleur --> PanBouton.setBackground(Color.white);
    
@@ -165,7 +159,7 @@ public class Fenetre extends JFrame{ // implements ActionListener
  
     
     verif.addActionListener(new BoutonListenerVerif());
-    verif.setEnabled(false);
+    //verif.setEnabled(false);
     
     
     content.setLayout(cl);
@@ -193,6 +187,8 @@ public class Fenetre extends JFrame{ // implements ActionListener
     
   }
  
+ 
+ 
 
 //Classe écoutant notre bouton vert
   class BoutonListenerPion implements ActionListener{
@@ -201,48 +197,48 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	    	
 	    	if(arg0.getSource() == tab_button[0]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.ROUGE));
-				  tab_pion[indPion] = new PionImg(1);}
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.ROUGE));
+		    	  tab_pion[indPion] = new PionImg(1);}
 	    	
 	    	if(arg0.getSource() == tab_button[1]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.BLEU));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.BLEU));
 				  tab_pion[indPion] = new PionImg(4);}
 	    	
 	    	if(arg0.getSource() == tab_button[2]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.JAUNE));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.JAUNE));
 				  tab_pion[indPion] = new PionImg(3);}
 	    	
 	    	
 	    	if(arg0.getSource() == tab_button[3]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.VERT));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.VERT));
 				  tab_pion[indPion] = new PionImg(2);}
 	    	
 	    	if(arg0.getSource() == tab_button[4]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.GRIS));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.GRIS));
 				  tab_pion[indPion] = new PionImg(8);}
 	    	
 	    	if(arg0.getSource() == tab_button[5]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.ROSE));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.ROSE));
 				  tab_pion[indPion] = new PionImg(9);}
 	    	
 	    	if(arg0.getSource() == tab_button[6]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.VIOLET));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.VIOLET));
 				  tab_pion[indPion] = new PionImg(10);}
 	    	
 	    	if(arg0.getSource() == tab_button[7]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.ORANGE));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.ORANGE));
 				  tab_pion[indPion] = new PionImg(11);}
 	    	
 	    	if(arg0.getSource() == tab_button[8]){
 				  grille.remove(tab_pion[indPion]);
-		    	  essai.setPion(NbCoup+1, new Pion(Couleur.NOIR));
+				  p.getEssai().setPion(p.getEssai().getCoupPion()+1, new Pion(Couleur.NOIR));
 				  tab_pion[indPion] = new PionImg(12);}
 			
 				
@@ -252,7 +248,8 @@ public class Fenetre extends JFrame{ // implements ActionListener
 			    	grille.add(tab_pion[i]);
 				}
 			 indPion++;
-			 if (NbCoup==3)
+			
+			 if (!p.getEssai().evalCoupPion())
 			 {
 				 
 				 for(int i=0; i<tab_button.length; i++){
@@ -260,10 +257,8 @@ public class Fenetre extends JFrame{ // implements ActionListener
 					}
 				
 				 verif.setEnabled(true);
-				 NbCoup=0;
+				 
 			 }
-			 else
-				 NbCoup++;
 			 
 			 
 			  grille.updateUI(); 
@@ -284,12 +279,12 @@ public class Fenetre extends JFrame{ // implements ActionListener
   class BoutonListenerVerif implements ActionListener{
 	    //Redéfinition de la méthode actionPerformed()
 	    public void actionPerformed(ActionEvent arg0) {
-	    	System.out.println(indPion);
-	    	Evaluation e1 = new Evaluation(essai,p.getSolut());
+	    	p.setEval();
+	    	
 	    	for(int j = 0; j <= 3; j++)
 			{
 	    		
-	    	if (e1.tabEval[j]== Couleur.BLANC)
+	    	if (p.getEval().tabEval[j]== Couleur.BLANC)
 	    		{
 	    			grille.remove(tab_pion[indPion]);
 	    			tab_pion[indPion] = new PionImg(5);
@@ -300,7 +295,7 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	    			  indPion++;
 	    		}
 
-	    		if (e1.tabEval[j]== Couleur.NOIR)
+	    		if (p.getEval().tabEval[j]== Couleur.NOIR)
 	    		{
 	    			grille.remove(tab_pion[indPion]);
 	    			tab_pion[indPion] = new PionImg(6);
@@ -312,7 +307,7 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	    		}
 	    		
 
-	    		if (e1.tabEval[j]== Couleur.NUL)
+	    		if (p.getEval().tabEval[j]== Couleur.NUL)
 	    		{
 	    			grille.remove(tab_pion[indPion]);
 	    			tab_pion[indPion] = new PionImg(7);
@@ -328,15 +323,22 @@ public class Fenetre extends JFrame{ // implements ActionListener
 
 			}
 	    	
+	    	if (p.jouer()){
 	    	for(int i=0; i<tab_button.length; i++){
 				 tab_button[i].setEnabled(true);
 				}
-	    	
+	    	messScore.setText("Votre Score : " + p.getJoueur().getScore());
+	    	}
+	    	else{
+	    		messScore.setText("VOTRE SCORE FINAL : " + p.getJoueur().getScore());
+	    	}
+	    		
 				 verif.setEnabled(false);
-				 NbCoup=0;
-				 player.setScore(e1.nbPoints());
-				 messScore.setText("Votre Score : " + player.getScore());
-			
+				// NbCoup=0;
+				// p.getJoueur();
+				 
+				 
+				 
 			 
 			  grille.updateUI(); 
 	    }
@@ -359,30 +361,90 @@ public class Fenetre extends JFrame{ // implements ActionListener
 	  public void actionPerformed(ActionEvent event){				
 	        if(++indice > 2)
 	          indice = 0;
-	        player = new Joueur(jtf.getText());
-	        p = new Partie(player);
-	        System.out.println(player.getPseudo());
+	        p = new Partie(jtf.getText());
+	        System.out.println(p.getJoueur().getPseudo());
 	        System.out.println(p.getSolut());
-	        mess.setText("Bienvenue à toi "+ player.getPseudo()+ " ! Prêt pour une partie?");
+	        mess.setText("Bienvenue à toi "+ p.getJoueur().getPseudo()+ " ! Prêt pour une partie?");
 	      
 	        
 	        //Réinitialisation du tableau tab_pion, avec l'image "vide.jpg"(à fond blanc)
-	        for(int i=0; i<tab_pion.length; i++){
+	        for(int i=0; i<40; i++){
 	        	grille.remove(tab_pion[i]);
 	        	tab_pion[i] = new PionImg(0);
     			//refaire une boucle pour init. la grille sinon "grille.add(tab_pion[indPion])" ajoute à la fin
-	        	for(int j=0; j<tab_pion.length; j++){
+	        	for(int j=0; j<40; j++){
+			    	grille.add(tab_pion[j]);
+    				}
+	        	
+	        }
+	      
+	        //Réinitialisation du tableau tab_pion, avec l'image "vide.jpg"(à fond blanc)
+	        for(int i=40; i<tab_pion.length; i++){
+	        	grille.remove(tab_pion[i]);
+	        	tab_pion[i] = new PionImg(13);
+    			//refaire une boucle pour init. la grille sinon "grille.add(tab_pion[indPion])" ajoute à la fin
+	        	for(int j=40; j<tab_pion.length; j++){
 			    	grille.add(tab_pion[j]);
     				}
 	        	
 	        }
 	        indPion = 0;
-	        NbCoup = 0;
+	        //Activation et desactivation des boutons
+	        for(int i=0; i<tab_button.length; i++){
+				 tab_button[i].setEnabled(true);
+				}
+	        verif.setEnabled(false);
+	       // NbCoup = 0;
 	       	        
 	        //Via cette instruction, on passe au conteneur correspondant au nom fourni en paramètre
 	        cl.show(content, listContent[indice]);
 	      }
 	  }
+  
+  class BoutonListenerReStart implements ActionListener{
+	    //Redéfinition de la méthode actionPerformed()
+	  public void actionPerformed(ActionEvent event){				
+	        String RecupPseudo = p.getJoueur().getPseudo();
+	        p = new Partie(RecupPseudo);
+	        System.out.println(p.getJoueur().getPseudo());
+	        System.out.println(p.getSolut());
+	        mess.setText("Bienvenue à toi "+ p.getJoueur().getPseudo()+ " ! Prêt pour une partie?");
+	      
+	        
+	        //Réinitialisation du tableau tab_pion, avec l'image "vide.jpg"(à fond blanc)
+	        for(int i=0; i<40; i++){
+	        	grille.remove(tab_pion[i]);
+	        	tab_pion[i] = new PionImg(0);
+  			//refaire une boucle pour init. la grille sinon "grille.add(tab_pion[indPion])" ajoute à la fin
+	        	for(int j=0; j<40; j++){
+			    	grille.add(tab_pion[j]);
+  				}
+	        	
+	        }
+	      
+	        //Réinitialisation du tableau tab_pion, avec l'image "vide.jpg"(à fond blanc)
+	        for(int i=40; i<tab_pion.length; i++){
+	        	grille.remove(tab_pion[i]);
+	        	tab_pion[i] = new PionImg(13);
+  			//refaire une boucle pour init. la grille sinon "grille.add(tab_pion[indPion])" ajoute à la fin
+	        	for(int j=40; j<tab_pion.length; j++){
+			    	grille.add(tab_pion[j]);
+  				}
+	        	
+	        }
+	        indPion = 0;
+	        //Activation et desactivation des boutons
+	        for(int i=0; i<tab_button.length; i++){
+				 tab_button[i].setEnabled(true);
+				}
+	        verif.setEnabled(false);
+	       // NbCoup = 0;
+	       	        
+	        //Via cette instruction, on passe au conteneur correspondant au nom fourni en paramètre
+	        cl.show(content, listContent[indice]);
+	      }
+	  }
+
   
  
      

@@ -85,14 +85,17 @@ public class PionImg extends JPanel implements Serializable {
     	      Image img = ImageIO.read(new File("Pion/pion-noir.JPG"));
     	      g.drawImage(img, 1, 1, 41, 40, this);
     		}
-    		//g.drawImage(img, 0, 0, this);
-    	      //Pour une image de fond
+    		if (this.i==13)
+    		{
+    	      Image img = ImageIO.read(new File("vert.gif"));
+    	      g.drawImage(img, 1, 1, 50, 50, this);
+    		}
+    		
+    		
     	      
     	    } catch (IOException e) {
     	      e.printStackTrace();
     	    }   
-        /*
-    	g.setColor(Color.RED);
-        g.fillOval(10,10,40,40);      */
+        
     }
 }
