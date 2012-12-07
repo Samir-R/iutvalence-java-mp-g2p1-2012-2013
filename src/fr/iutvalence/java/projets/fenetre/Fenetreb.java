@@ -184,6 +184,8 @@ public class Fenetreb extends JFrame{ // implements ActionListener
     
   }
  
+ 
+ 
 
 //Classe écoutant notre bouton vert
   class BoutonListenerPion implements ActionListener{
@@ -321,15 +323,21 @@ public class Fenetreb extends JFrame{ // implements ActionListener
 
 			}
 	    	
+	    	if (p.jouer()){
 	    	for(int i=0; i<tab_button.length; i++){
 				 tab_button[i].setEnabled(true);
 				}
-	    	
+	    	messScore.setText("Votre Score : " + p.getJoueur().getScore());
+	    	}
+	    	else{
+	    		messScore.setText("VOTRE SCORE FINAL : " + p.getJoueur().getScore());
+	    	}
+	    		
 				 verif.setEnabled(false);
 				// NbCoup=0;
-				 p.getJoueur();
+				// p.getJoueur();
 				 
-				 messScore.setText("Votre Score : " + p.getJoueur().getScore());
+				 
 				 
 			 
 			  grille.updateUI(); 
@@ -376,6 +384,8 @@ public class Fenetreb extends JFrame{ // implements ActionListener
 	        cl.show(content, listContent[indice]);
 	      }
 	  }
+  
+  
   
  
      

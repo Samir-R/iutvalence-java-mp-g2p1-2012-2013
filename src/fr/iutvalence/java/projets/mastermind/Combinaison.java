@@ -55,7 +55,7 @@ public class Combinaison {
 	}
 	
 	//methode permetant de saisir le pion de la combinaison à l'indice i et mdofie ainsi le 
-	public void setPion(int i, Pion p){
+	/*public void setPion(int i, Pion p){
 
 
 		
@@ -64,10 +64,16 @@ public class Combinaison {
 			this.coupPion ++;
 		else
 			this.coupPion = 0;
-		
-		
+	}*/
+	//methode permetant de saisir le pion de la combinaison à l'indice i et mdofie ainsi le
+		public void setPion(int i, Pion p){
 
-	}
+
+
+			this.pions[i-1]=p;
+			if (evalCoupPion())
+				this.coupPion ++;
+		}
 	
 	public int getCoupPion(){
 
@@ -142,7 +148,7 @@ public class Combinaison {
 	
 	
 	//Methode evaluant CoupPion
-	public boolean evalCoupPion()
+	/*public boolean evalCoupPion()
 	{
 		
 		
@@ -151,6 +157,22 @@ public class Combinaison {
 		else
 			return false;
 		
-	}
+	}*/
+	
+	//Methode evaluant CoupPion
+		public boolean evalCoupPion()
+		{
+
+
+			if (this.coupPion != 4)
+				return true;
+			else
+			{
+				this.coupPion = 0;
+				return false;
+				}
+
+		}
+
 
 }

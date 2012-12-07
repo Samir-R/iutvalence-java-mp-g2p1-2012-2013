@@ -41,6 +41,11 @@ public class Partie {
 	 */
 	private int coups;
 	
+	/**
+	 * le nombre de points final qui decremente de 25 à chaque coups d'essai
+	 */
+	private int pointsFinal;
+	
 	
 
 	// FIXME détailler le commentaire
@@ -52,6 +57,7 @@ public class Partie {
 		
 		this.aTrouver = new Combinaison();
 		this.player=player;
+		this.pointsFinal = 100;
 		this.coups = 0;
 		
 	}
@@ -67,6 +73,7 @@ public class Partie {
 		this.aTrouver = new Combinaison();
 		this.essai = new Combinaison();
 		this.player=new Joueur(pseudo);
+		this.pointsFinal = 100;
 		this.coups = 0;
 		
 	}
@@ -109,7 +116,7 @@ public class Partie {
 
 	}
 
-	//permet de lanser une evaluation et appelle la fonction increment()
+	//permet de lancer une evaluation et appelle la fonction increment()
 	public void setEval(){
 
 		this.eval = new Evaluation(this.essai,this.aTrouver);
@@ -127,16 +134,17 @@ public class Partie {
 		{
 			return true;
 		}
+		this.gestScoreFinal();
 		return false;
 		
 	}
 	
-	// retourne Vrai tantque le coups < 12
+	// retourne Vrai tantque le coups < 5
 		public boolean evalNbcoups()
 		{
 			
 			
-			while(this.coups < 12 ) 
+			while(this.coups < 5 ) 
 			{
 				return true;
 			}
@@ -157,10 +165,11 @@ public class Partie {
 				
 		}
 		
-		//fonction qui incremente le nombre de coups et appelle la fonction jouer()
+		//fonction qui incremente le nombre de coups et appelle la fonction jouer()(pour l'actualiser)
 		public void increment(){
 
 			this.coups ++;
+			this.pointsFinal = this.pointsFinal - 20;
 			jouer();			
 		}
 		
@@ -173,7 +182,11 @@ public class Partie {
 						
 		}
 
-		
+		//fonction qui ajoute les Pionts Final
+		public void gestScoreFinal(){
+
+			this.player.setScore(this.pointsFinal);
+		}			
 		
 	/*
 	public void jouer()
